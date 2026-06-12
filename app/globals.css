@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after { box-sizing: border-box; padding: 0; margin: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Bai Jamjuree', sans-serif;
+  overflow-x: hidden;
+  background: #ffffff;
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #43a047; border-radius: 10px; }
+
+/* ── Gradient text ── */
+.text-gradient-green {
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 30%, #43a047 65%, #66bb6a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #d97706, #f59e0b, #fde68a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass ── */
+.glass {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+.glass-green {
+  background: rgba(46,125,50,0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(102,187,106,0.3);
+}
+
+/* ── Hero background ── */
+.bg-hero {
+  background:
+    radial-gradient(ellipse 75% 75% at 5% 5%,  rgba(187,247,208,0.55) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 55% at 95% 15%, rgba(254,243,199,0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 110%,rgba(187,247,208,0.3)  0%, transparent 60%),
+    #ffffff;
+}
+
+/* ── Section base ── */
+.section-pad { padding: 96px 0; }
+
+/* ── Gradient animated background ── */
+.bg-gradient-animated {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32, #43a047, #2e7d32, #1b5e20);
+  background-size: 300% 300%;
+  animation: gradient-x 8s ease infinite;
+}
+
+/* ── Blob delay helpers ── */
+.delay-2000 { animation-delay: 2s; }
+.delay-4000 { animation-delay: 4s; }
+.delay-6000 { animation-delay: 6s; }
+.delay-8000 { animation-delay: 8s; }
+
+/* ── Noise overlay ── */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Tilt card (JS-enhanced) ── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.tilt-card:hover { box-shadow: 0 20px 60px rgba(46,125,50,0.15); }
+
+/* ── Step connector ── */
+.step-line::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 44px;
+  bottom: -24px;
+  width: 2px;
+  background: linear-gradient(to bottom, #43a047, transparent);
+}
+
+/* ── Pricing highlight ring ── */
+.pricing-popular {
+  box-shadow:
+    0 0 0 2px #43a047,
+    0 24px 60px rgba(46,125,50,0.25);
+}
