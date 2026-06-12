@@ -65,9 +65,7 @@ export default function Features() {
               <motion.div
                 className="md:col-span-2 relative rounded-3xl overflow-hidden p-8 flex flex-col justify-between min-h-[260px] group"
                 style={{ background: `linear-gradient(135deg,${f.iconBg} 0%,#ffffff 60%)`, border: `1.5px solid ${f.iconBorder}` }}
-                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.22,1,0.36,1] }}
-                whileHover={{ y: -5 }}>
+                  whileHover={{ y: -5 }}>
                 <div className="absolute top-5 right-7 text-[90px] font-extrabold leading-none select-none pointer-events-none opacity-[0.07] text-gray-900">{f.num}</div>
                 <div>
                   <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5 shadow-sm"
@@ -92,8 +90,6 @@ export default function Features() {
               <motion.div
                 className="relative rounded-3xl overflow-hidden p-8 bg-white group min-h-[260px] flex flex-col justify-between"
                 style={{ border: '1.5px solid #f0f0f0', boxShadow: '0 2px 20px rgba(0,0,0,0.04)' }}
-                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.08, ease: [0.22,1,0.36,1] }}
                 whileHover={{ y: -5 }}>
                 <div className="absolute top-5 right-7 text-[90px] font-extrabold leading-none select-none pointer-events-none opacity-[0.04] text-gray-900">{f.num}</div>
                 {/* Big stat */}
@@ -120,8 +116,6 @@ export default function Features() {
             <motion.div key={f.num}
               className="relative rounded-3xl overflow-hidden p-8 bg-white group flex flex-col justify-between"
               style={{ border: '1.5px solid #f0f0f0', boxShadow: '0 2px 20px rgba(0,0,0,0.04)' }}
-              initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.07, ease: [0.22,1,0.36,1] }}
               whileHover={{ y: -5, boxShadow: '0 8px 32px rgba(0,0,0,0.08)' } as any}>
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"
                 style={{ background: `linear-gradient(135deg,${f.iconBg}55 0%,transparent 50%)` }} />
@@ -146,8 +140,6 @@ export default function Features() {
             return (
               <motion.div
                 className="md:col-span-3 relative rounded-3xl overflow-hidden p-9 bg-gray-950"
-                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1, ease: [0.22,1,0.36,1] }}
                 whileHover={{ y: -4 }}>
                 <div className="absolute inset-0 pointer-events-none"
                   style={{ background: 'radial-gradient(ellipse 40% 100% at 85% 50%, rgba(204,251,241,0.06) 0%, transparent 60%)' }} />

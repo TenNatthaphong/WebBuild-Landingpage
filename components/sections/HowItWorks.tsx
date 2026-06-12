@@ -1,11 +1,13 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import SectionHeading from '@/components/ui/SectionHeading'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import SectionHeading from '@/components/ui/SectionHeading'
 
 gsap.registerPlugin(ScrollTrigger)
+
+// removed unused STEP_DURATIONS
 
 /* ─── named preview components (avoids stale JSX in array) ─── */
 
@@ -58,46 +60,110 @@ function PreviewStep1() {
   )
 }
 
+const STEP2_STEPS = ['บรีฟ', 'วางแผน', 'เขียนเว็บ', 'เปิดเว็บ']
+const STEP2_BADGES = [
+  'กำลังอ่านบรีฟ...',
+  'วางแผนโครงสร้างเว็บ...',
+  'กำลังเขียนโค้ด',
+  'เว็บพร้อมใช้งานแล้ว! 🎉',
+]
+const STEP2_LOGS: Record<number, string> = {
+  0:  'กำลังวางโครงสร้างเว็บ...',
+  20: 'สร้าง component และ layout...',
+  45: 'เพิ่มเนื้อหาและรูปภาพ...',
+  70: 'ปรับ style และ typography...',
+  90: 'ตรวจสอบ responsive design...',
+  99: 'เสร็จสมบูรณ์ ✓',
+}
+
 function PreviewStep2() {
+  const [step, setStep]       = useState(0)
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>
+    let intervalId: ReturnType<typeof setInterval>
+    const DURATIONS = [1300, 1300, 3300, 2000]
+
+    const goToStep = (s: number) => {
+      clearInterval(intervalId)
+      setStep(s)
+      setProgress(0)
+      if (s === 2) {
+        let p = 0
+        intervalId = setInterval(() => {
+          p = Math.min(p + 1, 100)
+          setProgress(p)
+          if (p >= 100) clearInterval(intervalId)
+        }, 33)
+      }
+      timeoutId = setTimeout(() => goToStep((s + 1) % 4), DURATIONS[s])
+    }
+
+    goToStep(0)
+    return () => { clearTimeout(timeoutId); clearInterval(intervalId) }
+  }, [])
+
+  const logMsg = Object.entries(STEP2_LOGS)
+    .filter(([k]) => progress >= Number(k))
+    .at(-1)?.[1] ?? STEP2_LOGS[0]
+
+  const barWidth = step === 3 ? 100 : step === 2 ? progress : 0
+
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
       <div className="p-7 text-center">
+        {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-sm font-semibold px-4 py-2 rounded-full mb-5">
-          <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
-          น้องใบบัวกำลังอ่านบรีฟ...
+          <span className={`w-2 h-2 rounded-full bg-brand-500 ${step < 3 ? 'animate-pulse' : ''}`} />
+          {STEP2_BADGES[step]}{step === 2 ? ` ${progress}%` : ''}
         </div>
+
         <div className="text-xl font-extrabold text-gray-900 mb-1.5">น้องใบบัวกำลังสร้างเว็บให้คุณ</div>
         <div className="text-sm text-gray-400 mb-6">ใช้เวลาประมาณ 3–5 นาที</div>
+
+        {/* Step indicators */}
         <div className="flex items-center justify-center gap-3 mb-6">
-          {[
-            { label: 'บรีฟ', done: true },
-            { label: 'วางแผน', done: true },
-            { label: 'เขียนเว็บ', active: true, num: '3' },
-            { label: 'เปิดเว็บ', num: '4' },
-          ].map((s, i, arr) => (
+          {STEP2_STEPS.map((label, i, arr) => (
             <div key={i} className="flex items-center gap-3">
               <div className="flex flex-col items-center gap-1.5">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold border-2 ${
-                  s.done   ? 'bg-brand-600 border-brand-600 text-white' :
-                  s.active ? 'bg-white border-brand-500 text-brand-600' :
-                             'bg-gray-100 border-gray-200 text-gray-400'
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-500 ${
+                  i < step  ? 'bg-brand-600 border-brand-600 text-white' :
+                  i === step ? 'bg-white border-brand-500 text-brand-600 shadow-md shadow-brand-100' :
+                               'bg-gray-100 border-gray-200 text-gray-400'
                 }`}>
-                  {s.done ? '✓' : s.num}
+                  {i < step ? '✓' : i + 1}
                 </div>
-                <div className={`text-xs ${s.done || s.active ? 'text-gray-700 font-semibold' : 'text-gray-400'}`}>{s.label}</div>
+                <div className={`text-xs transition-colors duration-300 ${i <= step ? 'text-gray-700 font-semibold' : 'text-gray-400'}`}>
+                  {label}
+                </div>
               </div>
-              {i < arr.length - 1 && <div className={`w-8 h-px mb-5 ${s.done ? 'bg-brand-500' : 'bg-gray-200'}`} />}
+              {i < arr.length - 1 && (
+                <div className={`w-8 h-px mb-5 transition-all duration-500 ${i < step ? 'bg-brand-500' : 'bg-gray-200'}`} />
+              )}
             </div>
           ))}
         </div>
+
+        {/* Progress box */}
         <div className="bg-gray-50 rounded-xl p-4 text-left border border-gray-100">
           <div className="flex justify-between text-sm text-gray-500 mb-2">
-            <span>ความคืบหน้า</span><span className="text-brand-600 font-bold">2% · รอบที่ 1/60</span>
+            <span>ความคืบหน้า</span>
+            <span className="text-brand-600 font-bold tabular-nums">{barWidth}% · รอบที่ 1/60</span>
           </div>
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-brand-500 to-brand-400 rounded-full w-[2%]" />
+            <div
+              className="h-full bg-gradient-to-r from-brand-500 to-brand-400 rounded-full"
+              style={{ width: `${barWidth}%`, transition: step === 2 ? 'width 33ms linear' : 'width 600ms ease' }}
+            />
           </div>
-          <div className="text-sm text-gray-400 mt-2.5">● น้องใบบัวกำลังอ่านบรีฟ...</div>
+          <div className="text-sm text-gray-400 mt-2.5 flex items-center gap-1.5">
+            {step < 3
+              ? <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse flex-shrink-0" />
+              : <span className="text-brand-600 flex-shrink-0">✓</span>
+            }
+            {step === 2 ? logMsg : STEP2_BADGES[step]}
+          </div>
         </div>
       </div>
     </div>
@@ -221,7 +287,7 @@ const STEPS = [
 export default function HowItWorks() {
   const [active, setActive] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
-  const pinRef     = useRef<HTMLDivElement>(null)
+  // pinRef removed (not used)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -285,7 +351,7 @@ export default function HowItWorks() {
 
           {/* Right: sticky preview (desktop) */}
           <div className="hidden lg:block">
-            <div ref={pinRef} className="sticky" style={{ top: 'calc(50vh - 160px)' }}>
+            <div className="sticky" style={{ top: 'calc(50vh - 160px)' }}>
               <AnimatePresence mode="wait">
                 <motion.div key={active}
                   initial={{ opacity: 0, y: 20, scale: 0.97 }}

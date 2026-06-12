@@ -64,10 +64,6 @@ export default function UsageModes() {
             <motion.div key={i}
               className="rounded-3xl overflow-hidden bg-white"
               style={{ border: `1.5px solid ${m.headerBorder}`, boxShadow: '0 4px 32px rgba(0,0,0,0.06)' }}
-              initial={{ opacity: 0, y: 48 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.65, delay: i * 0.12, ease: [0.22,1,0.36,1] }}
               whileHover={{ y: -6 }}>
 
               {/* Colored header zone */}
