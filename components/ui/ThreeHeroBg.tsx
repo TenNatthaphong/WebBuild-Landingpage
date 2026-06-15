@@ -2,9 +2,9 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-const PARTICLE_COUNT = 90
-const CONNECTION_DIST = 2.8
-const MAX_LINES = 300
+const COLS = 58
+const ROWS = 34
+const COUNT = COLS * ROWS
 
 export default function ThreeHeroBg() {
   const mountRef = useRef<HTMLDivElement>(null)
@@ -16,54 +16,57 @@ export default function ThreeHeroBg() {
     const W = mount.clientWidth
     const H = mount.clientHeight
 
-    // Renderer
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
     renderer.setSize(W, H)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor(0x000000, 0)
     mount.appendChild(renderer.domElement)
 
-    // Scene + camera
     const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 100)
-    camera.position.z = 6
 
-    // Particles
-    const pPositions = new Float32Array(PARTICLE_COUNT * 3)
-    const velocities: [number, number][] = []
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      pPositions[i * 3]     = (Math.random() - 0.5) * 14
-      pPositions[i * 3 + 1] = (Math.random() - 0.5) * 9
-      pPositions[i * 3 + 2] = (Math.random() - 0.5) * 3
-      velocities.push([(Math.random() - 0.5) * 0.006, (Math.random() - 0.5) * 0.006])
+    // Linear fog fades far rows into the page background
+    scene.fog = new THREE.Fog(0xf8fdf8, 10, 28)
+
+    const camera = new THREE.PerspectiveCamera(52, W / H, 0.1, 100)
+    camera.position.set(0, 5.5, 10)
+    camera.lookAt(0, 0, -1)
+
+    // ── Build grid ──────────────────────────────────────────────
+    const positions = new Float32Array(COUNT * 3)
+    const colors    = new Float32Array(COUNT * 3)
+
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        const i = row * COLS + col
+        positions[i * 3]     = (col / (COLS - 1) - 0.5) * 30   // x
+        positions[i * 3 + 1] = 0                                  // y (animated)
+        positions[i * 3 + 2] = (row / (ROWS - 1) - 0.5) * 18   // z
+      }
     }
 
-    const pGeo = new THREE.BufferGeometry()
-    pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3))
-    const pMat = new THREE.PointsMaterial({ size: 0.055, color: 0x43a047, transparent: true, opacity: 0.65 })
-    const points = new THREE.Points(pGeo, pMat)
-    scene.add(points)
+    const geo = new THREE.BufferGeometry()
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+    geo.setAttribute('color',    new THREE.BufferAttribute(colors, 3))
 
-    // Pre-allocated line segments
-    const lPositions = new Float32Array(MAX_LINES * 2 * 3)
-    const lGeo = new THREE.BufferGeometry()
-    lGeo.setAttribute('position', new THREE.BufferAttribute(lPositions, 3))
-    lGeo.setDrawRange(0, 0)
-    const lMat = new THREE.LineBasicMaterial({ color: 0x43a047, transparent: true, opacity: 0.12 })
-    const lineSegs = new THREE.LineSegments(lGeo, lMat)
-    scene.add(lineSegs)
+    const mat = new THREE.PointsMaterial({
+      size: 0.075,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.85,
+      sizeAttenuation: true,
+    })
 
-    // Mouse parallax
+    scene.add(new THREE.Points(geo, mat))
+
+    // ── Mouse parallax ──────────────────────────────────────────
     let mx = 0, my = 0
     const onMouseMove = (e: MouseEvent) => {
-      mx = (e.clientX / window.innerWidth - 0.5) * 2
+      mx =  (e.clientX / window.innerWidth  - 0.5) * 2
       my = -(e.clientY / window.innerHeight - 0.5) * 2
     }
     window.addEventListener('mousemove', onMouseMove)
 
-    // Resize
     const onResize = () => {
-      if (!mount) return
       const w = mount.clientWidth, h = mount.clientHeight
       camera.aspect = w / h
       camera.updateProjectionMatrix()
@@ -71,42 +74,51 @@ export default function ThreeHeroBg() {
     }
     window.addEventListener('resize', onResize)
 
-    // Animate
+    // ── Color palette ───────────────────────────────────────────
+    // trough → peak: deep teal #0d9488 → bright mint #a7f3d0
+    //   r: 0.051 → 0.655   Δ = +0.604
+    //   g: 0.580 → 0.953   Δ = +0.373
+    //   b: 0.533 → 0.816   Δ = +0.283
+    const R0 = 0.051, RΔ = 0.604
+    const G0 = 0.580, GΔ = 0.373
+    const B0 = 0.533, BΔ = 0.283
+
+    const clock = new THREE.Clock()
     let rafId: number
+
     const animate = () => {
       rafId = requestAnimationFrame(animate)
+      const t = clock.getElapsedTime()
 
-      // Move particles
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        pPositions[i * 3]     += velocities[i][0]
-        pPositions[i * 3 + 1] += velocities[i][1]
-        if (Math.abs(pPositions[i * 3]) > 7)     velocities[i][0] *= -1
-        if (Math.abs(pPositions[i * 3 + 1]) > 4.5) velocities[i][1] *= -1
+      for (let i = 0; i < COUNT; i++) {
+        const x = positions[i * 3]
+        const z = positions[i * 3 + 2]
+
+        // Three overlapping sinusoidal waves
+        const wave =
+          Math.sin(x * 0.36 + t * 0.72) * Math.cos(z * 0.42 + t * 0.58) * 1.15 +
+          Math.sin(x * 0.19 + z * 0.24 + t * 0.44) * 0.60 +
+          Math.cos(x * 0.52 - z * 0.31 + t * 0.88) * 0.38
+
+        positions[i * 3 + 1] = wave
+
+        // Map wave [-2.13, +2.13] → [0, 1]
+        const n = Math.max(0, Math.min(1, (wave + 2.13) / 4.26))
+        colors[i * 3]     = R0 + n * RΔ
+        colors[i * 3 + 1] = G0 + n * GΔ
+        colors[i * 3 + 2] = B0 + n * BΔ
       }
-      pGeo.attributes.position.needsUpdate = true
 
-      // Build line segments
-      let drawCount = 0
-      for (let i = 0; i < PARTICLE_COUNT && drawCount < MAX_LINES; i++) {
-        for (let j = i + 1; j < PARTICLE_COUNT && drawCount < MAX_LINES; j++) {
-          const dx = pPositions[i*3] - pPositions[j*3]
-          const dy = pPositions[i*3+1] - pPositions[j*3+1]
-          const dz = pPositions[i*3+2] - pPositions[j*3+2]
-          const d2 = dx*dx + dy*dy + dz*dz
-          if (d2 < CONNECTION_DIST * CONNECTION_DIST) {
-            const base = drawCount * 6
-            lPositions[base]   = pPositions[i*3];   lPositions[base+1] = pPositions[i*3+1]; lPositions[base+2] = pPositions[i*3+2]
-            lPositions[base+3] = pPositions[j*3];   lPositions[base+4] = pPositions[j*3+1]; lPositions[base+5] = pPositions[j*3+2]
-            drawCount++
-          }
-        }
-      }
-      lGeo.setDrawRange(0, drawCount * 2)
-      lGeo.attributes.position.needsUpdate = true
+      geo.attributes.position.needsUpdate = true
+      geo.attributes.color.needsUpdate    = true
 
-      // Parallax
-      camera.position.x += (mx * 0.35 - camera.position.x) * 0.025
-      camera.position.y += (my * 0.22 - camera.position.y) * 0.025
+      // Gentle autonomous sway + mouse tilt
+      const swayX = Math.sin(t * 0.17) * 0.9
+      const swayZ = Math.cos(t * 0.11) * 0.5
+      camera.position.x += (mx * 1.4 + swayX - camera.position.x) * 0.018
+      camera.position.y += (my * 0.6 + 5.5   - camera.position.y) * 0.018
+      camera.position.z += (swayZ + 10        - camera.position.z) * 0.018
+      camera.lookAt(0, 0, -1)
 
       renderer.render(scene, camera)
     }
@@ -117,11 +129,17 @@ export default function ThreeHeroBg() {
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('resize', onResize)
       if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement)
-      pGeo.dispose(); pMat.dispose()
-      lGeo.dispose(); lMat.dispose()
+      geo.dispose()
+      mat.dispose()
       renderer.dispose()
     }
   }, [])
 
-  return <div ref={mountRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }} />
+  return (
+    <div
+      ref={mountRef}
+      className="absolute inset-0 pointer-events-none"
+      style={{ zIndex: 0 }}
+    />
+  )
 }
