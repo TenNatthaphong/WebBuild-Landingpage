@@ -109,14 +109,12 @@ export default function CtaFinal() {
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
           <div className="relative">
             <motion.div
-              className="absolute inset-0 rounded-2xl"
-              style={{ background: '#e91e63' }}
-              animate={{ scale: [1, 1.18, 1], opacity: [0.35, 0, 0.35] }}
+              className="absolute inset-0 rounded-2xl bg-brand-500"
+              animate={{ scale: [1, 1.18, 1], opacity: [0.4, 0, 0.4] }}
               transition={{ duration: 2.2, repeat: Infinity, ease: 'easeOut' }}
             />
             <motion.a href="#"
-              className="relative inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl text-white font-extrabold text-lg shadow-lg"
-              style={{ background: 'linear-gradient(135deg, #43a047 0%, #2e7d32 40%, #c2185b 75%, #e91e63 100%)', boxShadow: '0 8px 32px rgba(233,30,99,0.28)' }}
+              className="relative inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-lg shadow-lg shadow-brand-600/25 transition-colors"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}>
               <Zap size={18} strokeWidth={2.5} /> เริ่มสร้างด้วย AI ฟรี

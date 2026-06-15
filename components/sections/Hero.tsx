@@ -90,8 +90,7 @@ export default function Hero() {
 
           <motion.div variants={item} className="flex flex-wrap gap-4">
             <motion.a href="#"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-lg shadow-lg shadow-pink-500/25 transition-shadow hover:shadow-pink-500/40"
-              style={{ background: 'linear-gradient(135deg, #43a047 0%, #2e7d32 40%, #c2185b 75%, #e91e63 100%)' }}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-lg shadow-lg shadow-brand-600/30 transition-all"
               whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Zap size={18} strokeWidth={2.5} /> เริ่มสร้างด้วย AI ฟรี
             </motion.a>

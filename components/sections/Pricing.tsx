@@ -109,7 +109,7 @@ export default function Pricing() {
 
               <motion.a href="#"
                 className={`block w-full text-center py-3 rounded-2xl text-sm font-bold mb-6 transition-all ${p.highlight ? '' : p.btnClass}`}
-                style={p.highlight ? { background: 'linear-gradient(135deg,#43a047,#e91e63)', color: '#fff', boxShadow: '0 4px 18px rgba(233,30,99,0.28)' } : {}}
+                style={p.highlight ? { background: '#2e7d32', color: '#fff', boxShadow: '0 4px 18px rgba(46,125,50,0.3)' } : {}}
                 whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
                 {p.btnLabel}
               </motion.a>

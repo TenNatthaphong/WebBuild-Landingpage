@@ -44,15 +44,12 @@ export default function Footer() {
             <div className="flex gap-3">
               {(['LINE','FB','IG','TW']).map(s => (
                 <a key={s} href="#"
-                  className="footer-social w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold text-white/70 hover:text-white transition-all">
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold text-white/60 hover:text-white hover:bg-pink-500/25 transition-all"
+                  style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)' }}>
                   {s}
                 </a>
               ))}
             </div>
-            <style jsx>{`
-              .footer-social { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); }
-              .footer-social:hover { background: rgba(233,30,99,0.25); border-color: rgba(233,30,99,0.4); }
-            `}</style>
           </div>
 
           {/* Link columns */}
