@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { FileText, Bot, PenTool, Globe, ArrowRight } from 'lucide-react'
 import SectionHeading from '@/components/ui/SectionHeading'
 
@@ -311,16 +312,36 @@ export default function HowItWorks() {
           {/* Right: sticky preview */}
           <div className="hidden lg:block">
             <div className="sticky" style={{ top: 'calc(50vh - 220px)' }}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active}
-                  initial={{ opacity: 0, y: 20, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0,  scale: 1 }}
-                  exit={{    opacity: 0, y: -12, scale: 0.97 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}>
-                  <ActivePreview />
-                </motion.div>
-              </AnimatePresence>
+              <div className="relative" style={{ overflow: 'visible' }}>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active}
+                    initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0,  scale: 1 }}
+                    exit={{    opacity: 0, y: -12, scale: 0.97 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}>
+                    <ActivePreview />
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* mascot-6 ดีใจ มุมล่างขวาของ preview step 4 */}
+                <AnimatePresence>
+                  {active === 3 && (
+                    <motion.div
+                      className="absolute -bottom-14 -right-6 pointer-events-none select-none z-20"
+                      initial={{ opacity: 0, scale: 0.7 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.7 }}
+                      transition={{ duration: 0.4, ease: [0.22,1,0.36,1] }}>
+                      <motion.div
+                        animate={{ y: [0,-10,0] }}
+                        transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}>
+                        <Image src="/mascot-6.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
               {/* Step indicator dots */}
               <div className="flex items-center gap-2 mt-5 justify-center">
