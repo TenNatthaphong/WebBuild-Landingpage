@@ -76,16 +76,31 @@ export default function Hero() {
 
           <motion.div variants={item} className="space-y-1">
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">สร้างเว็บไซต์</h1>
-            <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gradient-vivid">
+            <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gradient-vivid inline-flex items-center gap-2">
               ด้วย AI
-              <span className="inline-block w-[3px] h-[0.9em] bg-pink-500 ml-2 align-middle animate-pulse" />
+              {/* Mouse cursor after AI */}
+              <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="inline-block w-12 h-12 align-middle"
+                style={{ filter: 'drop-shadow(0 2px 6px rgba(233,30,99,0.35))' }}
+                animate={{ y: [0, -6, 0], rotate: [-8, 0, -8] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+                <path d="M4 2L4 18L8.5 13.5L11.5 20L13.5 19L10.5 12.5L17 12.5L4 2Z"
+                  fill="url(#cursorGrad)" stroke="white" strokeWidth="1" strokeLinejoin="round"/>
+                <defs>
+                  <linearGradient id="cursorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#e91e63"/>
+                    <stop offset="100%" stopColor="#43a047"/>
+                  </linearGradient>
+                </defs>
+              </motion.svg>
             </h1>
-            <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">ในไม่กี่นาที</h1>
+            <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">ใน 5 นาที</h1>
           </motion.div>
 
           <motion.p variants={item} className="text-xl text-gray-600 max-w-[480px] leading-relaxed">
-            บอก <strong className="text-brand-600 font-bold">AI</strong> ว่าต้องการเว็บแบบไหน — สร้างเว็บสวยพร้อม Hosting ให้ทันที
-            ไม่ต้องรู้โค้ด ไม่ต้องง้อนักพัฒนา
+            สร้างเว็บสวยพร้อมออนไลน์ ใช้งานได้ทันที ไม่ต้องมีความรู้เรื่องโค้ด
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap gap-4">
