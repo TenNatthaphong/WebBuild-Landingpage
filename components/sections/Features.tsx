@@ -139,22 +139,24 @@ export default function Features() {
             const f = FEATS[5]
             return (
               <motion.div
-                className="md:col-span-3 relative rounded-3xl overflow-hidden p-9 bg-gray-950"
+                className="md:col-span-3 relative rounded-3xl overflow-hidden p-9"
+                style={{ background: 'linear-gradient(135deg,#ccfbf1 0%,#e0f2fe 100%)', border: '1.5px solid #99f6e4' }}
                 whileHover={{ y: -4 }}>
                 <div className="absolute inset-0 pointer-events-none"
-                  style={{ background: 'radial-gradient(ellipse 40% 100% at 85% 50%, rgba(204,251,241,0.06) 0%, transparent 60%)' }} />
+                  style={{ background: 'radial-gradient(ellipse 40% 100% at 85% 50%, rgba(255,255,255,0.5) 0%, transparent 60%)' }} />
                 <div className="absolute inset-0 pointer-events-none"
-                  style={{ opacity: 0.04, backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                  style={{ opacity: 0.07, backgroundImage: 'radial-gradient(circle, #0f766e 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-10">
                   <div className="flex-1">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5 bg-white/10">{f.icon}</div>
-                    <h3 className="text-2xl font-extrabold text-white mb-3">{f.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed max-w-xl">{f.body}</p>
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5"
+                      style={{ background: f.iconBg, border: `1.5px solid ${f.iconBorder}` }}>{f.icon}</div>
+                    <h3 className="text-2xl font-extrabold text-gray-950 mb-3">{f.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed max-w-xl">{f.body}</p>
                   </div>
                   <div className="flex flex-wrap gap-2 md:flex-col md:items-end flex-shrink-0">
                     {f.tags.map(t => (
                       <span key={t} className="px-4 py-2 rounded-xl text-sm font-semibold"
-                        style={{ background: 'rgba(204,251,241,0.1)', color: '#99f6e4', border: '1px solid rgba(204,251,241,0.15)' }}>{t}</span>
+                        style={{ background: 'rgba(15,118,110,0.1)', color: '#0f766e', border: '1px solid rgba(15,118,110,0.2)' }}>{t}</span>
                     ))}
                   </div>
                 </div>

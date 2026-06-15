@@ -3,8 +3,11 @@ import { useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import dynamic from 'next/dynamic'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const ThreeHeroBg = dynamic(() => import('@/components/ui/ThreeHeroBg'), { ssr: false })
 
 const stagger = {
   hidden: {},
@@ -39,6 +42,9 @@ export default function Hero() {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden bg-hero">
+      {/* ── Three.js particle network ── */}
+      <ThreeHeroBg />
+
       {/* ── Parallax blobs ── */}
       <motion.div ref={b1}
         style={{ scale: bgScale, background: 'radial-gradient(circle, rgba(187,247,208,0.6) 0%, rgba(134,239,172,0.3) 40%, transparent 70%)' }}
