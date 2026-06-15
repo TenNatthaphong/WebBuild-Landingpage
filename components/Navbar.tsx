@@ -14,20 +14,41 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const { scrollY } = useScroll()
 
-  useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 60))
+  useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 80))
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 px-4 pt-4"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        paddingTop:    scrolled ? 12 : 0,
+        paddingBottom: scrolled ? 0  : 0,
+        paddingLeft:   scrolled ? 16 : 0,
+        paddingRight:  scrolled ? 16 : 0,
+      }}
+      transition={{ y: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }, opacity: { duration: 0.5 }, default: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } }}
     >
-      <nav className={`mx-auto max-w-6xl rounded-2xl px-6 py-3 flex items-center justify-between transition-all duration-500 ${
-        scrolled ? 'glass shadow-xl shadow-brand-600/10' : 'bg-white/60 backdrop-blur-md border border-white/50'
-      }`}>
+      <motion.nav
+        className="mx-auto flex items-center justify-between overflow-hidden"
+        animate={{
+          maxWidth:          scrolled ? 1152  : 9999,
+          borderRadius:      scrolled ? 20    : 0,
+          paddingLeft:       scrolled ? 24    : 32,
+          paddingRight:      scrolled ? 24    : 32,
+          paddingTop:        scrolled ? 12    : 20,
+          paddingBottom:     scrolled ? 12    : 20,
+          backgroundColor:   scrolled ? 'rgba(255,255,255,0.82)' : 'rgba(255,255,255,0.98)',
+          backdropFilter:    scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px)',
+          boxShadow:         scrolled
+            ? '0 8px 32px rgba(46,125,50,0.12), 0 0 0 1px rgba(255,255,255,0.55)'
+            : '0 1px 0 rgba(0,0,0,0.07)',
+        }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-0.5 text-xl font-extrabold select-none">
+        <Link href="/" className="flex items-center gap-0.5 text-xl font-extrabold select-none shrink-0">
           <span className="text-gray-950">HOSTING</span>
           <span className="text-brand-500">LOTUS</span>
         </Link>
@@ -45,7 +66,7 @@ export default function Navbar() {
         </ul>
 
         {/* Right */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <Link href="#" className="hidden md:inline text-sm text-gray-500 hover:text-brand-700 transition-colors">
             เข้าสู่ระบบ
           </Link>
@@ -58,7 +79,7 @@ export default function Navbar() {
             เริ่มฟรีเลย →
           </motion.a>
         </div>
-      </nav>
+      </motion.nav>
     </motion.header>
   )
 }
