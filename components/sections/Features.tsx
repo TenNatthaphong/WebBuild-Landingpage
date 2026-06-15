@@ -88,11 +88,6 @@ export default function Features() {
                   ))}
                 </div>
 
-                {/* mascot-2: laptop — top-right corner of this card */}
-                <motion.div className="absolute -top-14 -right-2 pointer-events-none select-none hidden md:block z-20"
-                  animate={{ y: [0,-10,0] }} transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}>
-                  <Image src="/mascot-2.png" alt="น้องใบบัว" width={140} height={140} style={{ objectFit: 'contain' }} />
-                </motion.div>
               </motion.div>
             )
           })()}
@@ -102,8 +97,8 @@ export default function Features() {
             const f = FEATS[1]
             return (
               <motion.div
-                className="relative rounded-3xl overflow-hidden p-8 bg-white group min-h-[260px] flex flex-col justify-between"
-                style={{ border: '1.5px solid #f0f0f0', boxShadow: '0 2px 20px rgba(0,0,0,0.04)' }}
+                className="relative rounded-3xl p-8 bg-white group min-h-[260px] flex flex-col justify-between"
+                style={{ border: '1.5px solid #f0f0f0', boxShadow: '0 2px 20px rgba(0,0,0,0.04)', overflow: 'visible' }}
                 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.08, ease: [0.22,1,0.36,1] }}
                 whileHover={{ y: -5 }}>
@@ -124,6 +119,12 @@ export default function Features() {
                       style={{ background: f.iconBg, color: f.accent }}>{t}</span>
                   ))}
                 </div>
+
+                {/* mascot-2: laptop — top-right corner of card 02 */}
+                <motion.div className="absolute -top-14 -right-4 pointer-events-none select-none hidden md:block z-20"
+                  animate={{ y: [0,-10,0] }} transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}>
+                  <Image src="/mascot-2.png" alt="น้องใบบัว" width={140} height={140} style={{ objectFit: 'contain' }} />
+                </motion.div>
               </motion.div>
             )
           })()}

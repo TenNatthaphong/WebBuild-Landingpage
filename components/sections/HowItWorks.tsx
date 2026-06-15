@@ -303,13 +303,6 @@ export default function HowItWorks() {
                     </div>
                   </motion.div>
 
-                  {/* mascot-1 โบกมือ ที่มุมล่างขวาของ step card แรก */}
-                  {i === 0 && (
-                    <motion.div className="absolute -bottom-14 -right-4 pointer-events-none select-none hidden md:block z-20"
-                      animate={{ y: [0,-10,0] }} transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}>
-                      <Image src="/mascot-1.png" alt="น้องใบบัว" width={130} height={130} style={{ objectFit: 'contain' }} />
-                    </motion.div>
-                  )}
                 </div>
               )
             })}
