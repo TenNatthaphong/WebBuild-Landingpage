@@ -131,9 +131,9 @@ export default function CtaFinal() {
         </motion.div>
 
         {/* mascot-6 ดีใจ มุมล่างขวาของ CTA box */}
-        <motion.div className="absolute -bottom-16 -right-16 pointer-events-none select-none hidden md:block z-20"
+        <motion.div className="absolute -bottom-20 -right-20 pointer-events-none select-none hidden md:block z-20"
           animate={{ y: [0,-12,0] }} transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}>
-          <Image src="/mascot-6.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
+          <Image src="/mascot-6.png" alt="น้องใบบัว" width={200} height={200} style={{ objectFit: 'contain' }} />
         </motion.div>
 
         {/* Trust signals */}

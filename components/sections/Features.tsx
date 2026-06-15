@@ -88,8 +88,8 @@ export default function Features() {
                   ))}
                 </div>
 
-                {/* mascot-2: laptop — bottom-right corner of this card */}
-                <motion.div className="absolute -bottom-14 -right-2 pointer-events-none select-none hidden md:block z-20"
+                {/* mascot-2: laptop — top-right corner of this card */}
+                <motion.div className="absolute -top-14 -right-2 pointer-events-none select-none hidden md:block z-20"
                   animate={{ y: [0,-10,0] }} transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}>
                   <Image src="/mascot-2.png" alt="น้องใบบัว" width={140} height={140} style={{ objectFit: 'contain' }} />
                 </motion.div>

@@ -44,7 +44,7 @@ export default function Testimonials() {
         {REVIEWS.map((r, i) => (
           <motion.div key={i}
             className="flex-shrink-0 w-80 bg-white rounded-3xl p-7 border border-gray-100 shadow-sm select-none flex flex-col justify-between"
-            style={{ minHeight: '220px', overflow: i === 2 ? 'visible' : undefined }}
+            style={{ minHeight: '220px' }}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -67,13 +67,6 @@ export default function Testimonials() {
               </div>
             </div>
 
-            {/* mascot-3 หัวใจ ที่มุมล่างขวาของ card ที่ 3 */}
-            {i === 2 && (
-              <motion.div className="absolute -bottom-14 -right-4 pointer-events-none select-none hidden md:block z-20"
-                animate={{ y: [0,-10,0] }} transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}>
-                <Image src="/mascot-3.png" alt="น้องใบบัว" width={130} height={130} style={{ objectFit: 'contain' }} />
-              </motion.div>
-            )}
           </motion.div>
         ))}
       </motion.div>

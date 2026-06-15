@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { MessageSquare, Cpu, Rocket, FolderOpen, GitBranch, CloudUpload } from 'lucide-react'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -66,8 +67,8 @@ export default function UsageModes() {
 
           {MODES.map((m, i) => (
             <motion.div key={i}
-              className="rounded-3xl overflow-hidden bg-white"
-              style={{ border: `1.5px solid ${m.headerBorder}`, boxShadow: '0 4px 32px rgba(0,0,0,0.06)' }}
+              className="rounded-3xl bg-white relative"
+              style={{ border: `1.5px solid ${m.headerBorder}`, boxShadow: '0 4px 32px rgba(0,0,0,0.06)', overflow: i === 1 ? 'visible' : 'hidden' }}
               initial={{ opacity: 0, y: 48 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -121,6 +122,14 @@ export default function UsageModes() {
                   เริ่มเลย →
                 </motion.a>
               </div>
+
+              {/* mascot-3 หัวใจ มุมล่างขวาของ card มีเว็บอยู่แล้ว */}
+              {i === 1 && (
+                <motion.div className="absolute -bottom-14 -right-4 pointer-events-none select-none hidden md:block z-20"
+                  animate={{ y: [0,-10,0] }} transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}>
+                  <Image src="/mascot-3.png" alt="น้องใบบัว" width={130} height={130} style={{ objectFit: 'contain' }} />
+                </motion.div>
+              )}
             </motion.div>
           ))}
         </div>

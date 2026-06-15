@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import { Zap, Play, Check } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -192,6 +193,12 @@ export default function Hero() {
             className="absolute top-1/2 -translate-y-1/2 -left-14 glass rounded-2xl px-4 py-3 shadow-xl"
             animate={{ x: [0,6,0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}>
             <div className="text-xs font-bold text-gray-800">ไม่ต้องมีความรู้เรื่องโค้ด</div>
+          </motion.div>
+
+          {/* mascot-1 โบกมือ มุมล่างขวาของ browser mockup */}
+          <motion.div className="absolute -bottom-14 -right-4 pointer-events-none select-none hidden md:block z-20"
+            animate={{ y: [0,-10,0] }} transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}>
+            <Image src="/mascot-1.png" alt="น้องใบบัว" width={130} height={130} style={{ objectFit: 'contain' }} />
           </motion.div>
         </motion.div>
       </div>
