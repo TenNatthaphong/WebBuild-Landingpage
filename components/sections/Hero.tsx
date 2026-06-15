@@ -76,25 +76,9 @@ export default function Hero() {
 
           <motion.div variants={item} className="space-y-1">
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">สร้างเว็บไซต์</h1>
-            <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gradient-vivid inline-flex items-center gap-2">
+            <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gradient-vivid">
               ด้วย AI
-              {/* Mouse cursor after AI */}
-              <motion.svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                className="inline-block w-12 h-12 align-middle"
-                style={{ filter: 'drop-shadow(0 2px 6px rgba(233,30,99,0.35))' }}
-                animate={{ y: [0, -6, 0], rotate: [-8, 0, -8] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
-                <path d="M4 2L4 18L8.5 13.5L11.5 20L13.5 19L10.5 12.5L17 12.5L4 2Z"
-                  fill="url(#cursorGrad)" stroke="white" strokeWidth="1" strokeLinejoin="round"/>
-                <defs>
-                  <linearGradient id="cursorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#e91e63"/>
-                    <stop offset="100%" stopColor="#43a047"/>
-                  </linearGradient>
-                </defs>
-              </motion.svg>
+              <span className="inline-block w-[3px] h-[0.9em] bg-pink-500 ml-2 align-middle animate-pulse" />
             </h1>
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">ใน 5 นาที</h1>
           </motion.div>
@@ -152,18 +136,39 @@ export default function Hero() {
             </div>
 
             {/* Website skeleton */}
-            <div className="bg-gradient-to-br from-brand-50 to-white p-5 h-72">
-              <div className="h-8 bg-brand-900 rounded-lg mb-4 w-full" />
-              <div className="h-10 bg-brand-100 rounded-xl mb-2 w-3/4" />
-              <div className="h-3 bg-gray-100 rounded mb-1.5 w-full" />
-              <div className="h-3 bg-gray-100 rounded mb-4 w-2/3" />
-              <div className="flex gap-3 mb-4">
-                <div className="h-9 bg-brand-600 rounded-xl flex-1" />
-                <div className="h-9 bg-gray-200 rounded-xl flex-[0.7]" />
+            <div className="bg-gradient-to-br from-brand-50 to-white p-5 h-72 flex flex-col justify-between">
+              {/* Nav bar skeleton */}
+              <div className="h-7 bg-brand-900 rounded-lg w-full flex items-center px-3 gap-2">
+                <div className="w-2 h-2 rounded-full bg-white/40" />
+                <div className="h-2 bg-white/30 rounded w-16" />
+                <div className="ml-auto flex gap-2">
+                  <div className="h-2 bg-white/20 rounded w-8" />
+                  <div className="h-2 bg-white/20 rounded w-8" />
+                </div>
               </div>
+
+              {/* Hero text block */}
+              <div className="flex-1 flex flex-col justify-center py-3">
+                <div className="text-[11px] font-extrabold text-gray-800 leading-snug mb-1">
+                  สร้างเว็บไซต์ด้วย AI ใน 5 นาที
+                </div>
+                <div className="text-[9px] text-gray-500 leading-relaxed mb-3">
+                  สร้างเว็บสวยพร้อมออนไลน์ ใช้งานได้ทันที<br/>ไม่ต้องมีความรู้เรื่องโค้ด
+                </div>
+                <div className="flex gap-2">
+                  <div className="h-6 bg-brand-600 rounded-lg flex-1 flex items-center justify-center">
+                    <span className="text-[8px] text-white font-bold">เริ่มสร้างฟรี</span>
+                  </div>
+                  <div className="h-6 bg-gray-100 rounded-lg flex-[0.7] flex items-center justify-center">
+                    <span className="text-[8px] text-gray-500">ดูตัวอย่าง</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card grid skeleton */}
               <div className="grid grid-cols-3 gap-2">
                 {[...Array(6)].map((_,i) => (
-                  <div key={i} className="h-14 bg-white rounded-xl border border-gray-100 shadow-sm" />
+                  <div key={i} className="h-12 bg-white rounded-xl border border-gray-100 shadow-sm" />
                 ))}
               </div>
             </div>
