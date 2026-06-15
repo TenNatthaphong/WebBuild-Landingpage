@@ -95,7 +95,7 @@ function PreviewStep2() {
           {STEP2_BADGES[step]}{step === 2 ? ` ${progress}%` : ''}
         </div>
         <div className="text-xl font-extrabold text-gray-900 mb-1.5">น้องใบบัวกำลังสร้างเว็บให้คุณ</div>
-        <div className="text-sm text-gray-400 mb-6">ใช้เวลาประมาณ 3–5 นาที</div>
+        <div className="text-sm text-gray-400 mb-6">ใช้เวลาประมาณ 5–7 นาที</div>
         <div className="flex items-center justify-center gap-3 mb-6">
           {STEP2_STEPS.map((label, i, arr) => (
             <div key={i} className="flex items-center gap-3">

@@ -4,7 +4,7 @@ import { Zap, ArrowRight, Check } from 'lucide-react'
 
 const STATS = [
   { value: '50', unit: 'เครดิต', label: 'ฟรีสำหรับผู้ใช้ใหม่' },
-  { value: '< 3', unit: 'นาที', label: 'สร้างเว็บเสร็จ' },
+  { value: '< 7', unit: 'นาที', label: 'สร้างเว็บเสร็จ' },
   { value: '฿0', unit: '', label: 'ค่าใช้จ่ายเริ่มต้น' },
 ]
 
