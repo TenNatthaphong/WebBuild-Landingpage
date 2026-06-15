@@ -78,7 +78,6 @@ export default function Hero() {
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">สร้างเว็บไซต์</h1>
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gradient-vivid">
               ด้วย AI
-              <span className="inline-block w-[3px] h-[0.9em] bg-pink-500 ml-2 align-middle animate-pulse" />
             </h1>
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">ใน 5 นาที</h1>
           </motion.div>
@@ -194,16 +193,14 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Floating card 2 — stats */}
+          {/* Floating card 2 — tagline */}
           <motion.div
             className="absolute -bottom-5 -left-10 glass rounded-2xl px-4 py-3 shadow-xl"
             animate={{ y: [0,10,0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}>
-            <div className="text-xs text-gray-400 mb-2">เว็บที่สร้างวันนี้</div>
-            <div className="flex items-end gap-1">
-              {[45,65,35,80,55,72,88].map((h,i) => (
-                <div key={i} className="w-3 rounded-t-sm transition-all"
-                  style={{ height: `${h*0.38}px`, background: `rgba(46,125,50,${0.25+i*0.1})` }} />
-              ))}
+            <div className="text-xs font-bold text-gray-800 leading-relaxed">
+              สร้างเว็บไซต์ด้วย AI ใน 5 นาที<br/>
+              สร้างเว็บสวยพร้อมออนไลน์ ใช้งานได้ทันที<br/>
+              ไม่ต้องมีความรู้เรื่องโค้ด
             </div>
           </motion.div>
 
