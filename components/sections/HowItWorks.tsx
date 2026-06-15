@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
 import { FileText, Bot, PenTool, Globe, ArrowRight } from 'lucide-react'
 import SectionHeading from '@/components/ui/SectionHeading'
 
