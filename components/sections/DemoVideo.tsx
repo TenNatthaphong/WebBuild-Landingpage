@@ -46,7 +46,7 @@ export default function DemoVideo() {
   }
 
   return (
-    <section className="relative w-full max-w-5xl mx-auto px-6 py-12">
+    <section className="relative w-full max-w-7xl mx-auto px-6 py-12">
       <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black border border-gray-100">
         <video
           ref={videoRef}

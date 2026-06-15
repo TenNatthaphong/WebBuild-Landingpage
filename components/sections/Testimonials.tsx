@@ -42,17 +42,20 @@ export default function Testimonials() {
         dragElastic={0.1}>
         {REVIEWS.map((r, i) => (
           <motion.div key={i}
-            className="flex-shrink-0 w-80 bg-white rounded-3xl p-7 border border-gray-100 shadow-sm select-none"
+            className="flex-shrink-0 w-80 bg-white rounded-3xl p-7 border border-gray-100 shadow-sm select-none flex flex-col justify-between"
+            style={{ minHeight: '220px' }}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, delay: i * 0.07, ease: [0.22,1,0.36,1] }}
             whileHover={{ y: -4 }}>
-            <div className="flex gap-1 mb-4">
-              {[...Array(r.stars)].map((_, j) => <span key={j} className="text-amber-400 text-lg">★</span>)}
+            <div>
+              <div className="flex gap-1 mb-4">
+                {[...Array(r.stars)].map((_, j) => <span key={j} className="text-amber-400 text-lg">★</span>)}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed">&ldquo;{r.text}&rdquo;</p>
             </div>
-            <p className="text-gray-700 text-sm leading-relaxed mb-5">&ldquo;{r.text}&rdquo;</p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mt-5">
               <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
                 style={{ background: AVATAR_GRAD[r.avatar] }}>
                 {r.name.charAt(3)}

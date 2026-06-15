@@ -100,8 +100,8 @@ function SiteCard({ site, dragging, cardWidth }: { site: typeof SITES[0]; draggi
 }
 
 export default function Examples() {
-  const [rowCount, setRowCount] = useState(1)
-  const [rowSizes, setRowSizes] = useState<number[]>([0])
+  const [rowCount, setRowCount] = useState(3)
+  const [rowSizes, setRowSizes] = useState<number[]>([0, 0, 0])
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const tracksRef    = useRef<(HTMLDivElement | null)[]>([])
@@ -221,7 +221,7 @@ export default function Examples() {
             <span className="text-gradient-vivid">HostingLotus AI</span>
           </h2>
 
-          <div className="relative">
+          <div className="relative hidden">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all"
