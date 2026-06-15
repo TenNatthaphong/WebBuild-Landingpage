@@ -94,7 +94,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Zap size={18} strokeWidth={2.5} /> เริ่มสร้างด้วย AI ฟรี
             </motion.a>
-            <motion.a href="#how-it-works"
+            <motion.a href="#demo"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white border border-gray-200 text-gray-800 font-bold text-lg hover:border-brand-300 hover:text-brand-700 transition-all shadow-sm"
               whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Play size={16} strokeWidth={2} fill="currentColor" /> ดูวิดีโอสาธิต

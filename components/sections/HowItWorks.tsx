@@ -231,11 +231,14 @@ export default function HowItWorks() {
   const ActivePreview = STEPS[active].Preview
 
   return (
-    <section id="how-it-works" className="py-24 px-6 relative overflow-hidden" style={{ background: '#ffffff' }}>
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-15 pointer-events-none animate-blob"
-        style={{ background: 'radial-gradient(circle, rgba(255,172,190,0.8) 0%, transparent 65%)', transform: 'translate(25%,-25%)' }} />
-      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] rounded-full opacity-10 pointer-events-none animate-blob delay-4000"
-        style={{ background: 'radial-gradient(circle, rgba(187,247,208,0.9) 0%, transparent 65%)', transform: 'translate(-25%,25%)' }} />
+    <section id="how-it-works" className="py-24 px-6 relative" style={{ background: '#ffffff' }}>
+      {/* blobs in a clipped wrapper so they don't overflow without breaking sticky */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-15 animate-blob"
+          style={{ background: 'radial-gradient(circle, rgba(255,172,190,0.8) 0%, transparent 65%)', transform: 'translate(25%,-25%)' }} />
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] rounded-full opacity-10 animate-blob delay-4000"
+          style={{ background: 'radial-gradient(circle, rgba(187,247,208,0.9) 0%, transparent 65%)', transform: 'translate(-25%,25%)' }} />
+      </div>
       <div className="max-w-6xl mx-auto">
         <SectionHeading
           eyebrow="วิธีใช้งาน"

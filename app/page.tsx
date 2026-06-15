@@ -1,5 +1,6 @@
 import Navbar        from '@/components/Navbar'
 import Hero          from '@/components/sections/Hero'
+import DemoVideo     from '@/components/sections/DemoVideo'
 import Highlights    from '@/components/sections/Highlights'
 import Features      from '@/components/sections/Features'
 import UsageModes    from '@/components/sections/UsageModes'
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="relative">
       <Navbar />
       <Hero />
+      <DemoVideo />
       <Highlights />
       <Features />
       <UsageModes />
