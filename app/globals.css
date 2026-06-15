@@ -30,7 +30,7 @@ body {
 }
 
 .text-gradient-vivid {
-  background: linear-gradient(135deg, #43a047 0%, #2e7d32 35%, #c2185b 70%, #e91e63 100%);
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 30%, #43a047 65%, #66bb6a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

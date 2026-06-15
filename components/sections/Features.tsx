@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Shield, Zap, BadgeDollarSign, Wand2, Headphones, Code2 } from 'lucide-react'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -186,6 +187,12 @@ export default function Features() {
 
         </div>
       </div>
+
+      {/* mascot-2: laptop — bottom-right */}
+      <motion.div className="absolute bottom-0 right-6 pointer-events-none select-none hidden md:block"
+        animate={{ y: [0, -10, 0] }} transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}>
+        <Image src="/mascot-2.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
+      </motion.div>
     </section>
   )
 }

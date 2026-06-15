@@ -9,7 +9,6 @@ import { Zap, Play, Check } from 'lucide-react'
 gsap.registerPlugin(ScrollTrigger)
 
 const ThreeHeroBg = dynamic(() => import('@/components/ui/ThreeHeroBg'), { ssr: false })
-const MascotCycler = dynamic(() => import('@/components/ui/MascotCycler'), { ssr: false })
 
 const stagger = {
   hidden: {},
@@ -108,10 +107,6 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          {/* Mascot */}
-          <motion.div variants={item} className="pt-4 hidden lg:flex justify-start">
-            <MascotCycler size={160} />
-          </motion.div>
         </motion.div>
 
         {/* ── Right: Browser mockup ── */}

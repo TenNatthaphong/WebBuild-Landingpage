@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FileText, Bot, PenTool, Globe, ArrowRight } from 'lucide-react'
@@ -350,6 +351,12 @@ export default function HowItWorks() {
           </div>
         </div>
       </div>
+
+      {/* mascot-1: waving — bottom-left */}
+      <motion.div className="absolute bottom-0 left-6 pointer-events-none select-none hidden md:block"
+        animate={{ y: [0, -10, 0] }} transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}>
+        <Image src="/mascot-1.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
+      </motion.div>
     </section>
   )
 }

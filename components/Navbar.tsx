@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
@@ -13,7 +13,15 @@ const LINKS = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [vw, setVw] = useState(1920)
   const { scrollY } = useScroll()
+
+  useEffect(() => {
+    const update = () => setVw(window.innerWidth)
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
 
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 80))
 
@@ -28,7 +36,7 @@ export default function Navbar() {
         className="mx-auto flex items-center justify-between"
         animate={{
           height:          56,
-          maxWidth:        scrolled ? 1152 : 9999,
+          maxWidth:        scrolled ? 1152 : vw,
           borderRadius:    scrolled ? 20 : 0,
           paddingLeft:     scrolled ? 24 : 32,
           paddingRight:    scrolled ? 24 : 32,

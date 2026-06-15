@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Zap, ArrowRight, Check } from 'lucide-react'
 
@@ -139,6 +140,12 @@ export default function CtaFinal() {
           ))}
         </motion.div>
 
+      </motion.div>
+
+      {/* mascot-6: happy — bottom-right */}
+      <motion.div className="absolute bottom-0 right-6 pointer-events-none select-none hidden md:block"
+        animate={{ y: [0, -10, 0] }} transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}>
+        <Image src="/mascot-6.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
       </motion.div>
     </section>
   )

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -79,7 +80,7 @@ export default function Pricing() {
           title="เริ่มสร้างได้ฟรี"
           titleGreen="จ่ายเฉพาะตอนจะ Publish จริง"
           subtitle="ไม่มีค่า Subscription บังคับ ไม่มีค่าธรรมเนียมซ่อนเร้น"
-          variant="vivid"
+          variant="green"
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
@@ -96,7 +97,7 @@ export default function Pricing() {
 
               {p.badge && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 text-white text-xs font-extrabold rounded-full shadow-lg"
-                  style={{ background: 'linear-gradient(135deg, #43a047, #e91e63)', boxShadow: '0 4px 14px rgba(233,30,99,0.35)' }}>
+                  style={{ background: 'linear-gradient(135deg, #2e7d32, #43a047)', boxShadow: '0 4px 14px rgba(46,125,50,0.35)' }}>
                   {p.badge}
                 </div>
               )}
@@ -126,6 +127,12 @@ export default function Pricing() {
           ))}
         </div>
       </div>
+
+      {/* mascot-5: watering — bottom-left */}
+      <motion.div className="absolute bottom-0 left-6 pointer-events-none select-none hidden md:block"
+        animate={{ y: [0, -10, 0] }} transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}>
+        <Image src="/mascot-5.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
+      </motion.div>
     </section>
   )
 }

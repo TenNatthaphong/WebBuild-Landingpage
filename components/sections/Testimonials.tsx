@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -70,6 +71,12 @@ export default function Testimonials() {
       </motion.div>
 
       <p className="text-center text-xs text-gray-400 mt-6">← ลากซ้าย-ขวาเพื่อดูรีวิวเพิ่มเติม →</p>
+
+      {/* mascot-3: heart — bottom-right */}
+      <motion.div className="absolute bottom-0 right-6 pointer-events-none select-none hidden md:block"
+        animate={{ y: [0, -10, 0] }} transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}>
+        <Image src="/mascot-3.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
+      </motion.div>
     </section>
   )
 }
