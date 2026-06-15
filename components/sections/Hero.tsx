@@ -135,39 +135,18 @@ export default function Hero() {
             </div>
 
             {/* Website skeleton */}
-            <div className="bg-gradient-to-br from-brand-50 to-white p-5 h-72 flex flex-col justify-between">
-              {/* Nav bar skeleton */}
-              <div className="h-7 bg-brand-900 rounded-lg w-full flex items-center px-3 gap-2">
-                <div className="w-2 h-2 rounded-full bg-white/40" />
-                <div className="h-2 bg-white/30 rounded w-16" />
-                <div className="ml-auto flex gap-2">
-                  <div className="h-2 bg-white/20 rounded w-8" />
-                  <div className="h-2 bg-white/20 rounded w-8" />
-                </div>
+            <div className="bg-gradient-to-br from-brand-50 to-white p-5 h-72">
+              <div className="h-8 bg-brand-900 rounded-lg mb-4 w-full" />
+              <div className="h-10 bg-brand-100 rounded-xl mb-2 w-3/4" />
+              <div className="h-3 bg-gray-100 rounded mb-1.5 w-full" />
+              <div className="h-3 bg-gray-100 rounded mb-4 w-2/3" />
+              <div className="flex gap-3 mb-4">
+                <div className="h-9 bg-brand-600 rounded-xl flex-1" />
+                <div className="h-9 bg-gray-200 rounded-xl flex-[0.7]" />
               </div>
-
-              {/* Hero text block */}
-              <div className="flex-1 flex flex-col justify-center py-3">
-                <div className="text-[11px] font-extrabold text-gray-800 leading-snug mb-1">
-                  สร้างเว็บไซต์ด้วย AI ใน 5 นาที
-                </div>
-                <div className="text-[9px] text-gray-500 leading-relaxed mb-3">
-                  สร้างเว็บสวยพร้อมออนไลน์ ใช้งานได้ทันที<br/>ไม่ต้องมีความรู้เรื่องโค้ด
-                </div>
-                <div className="flex gap-2">
-                  <div className="h-6 bg-brand-600 rounded-lg flex-1 flex items-center justify-center">
-                    <span className="text-[8px] text-white font-bold">เริ่มสร้างฟรี</span>
-                  </div>
-                  <div className="h-6 bg-gray-100 rounded-lg flex-[0.7] flex items-center justify-center">
-                    <span className="text-[8px] text-gray-500">ดูตัวอย่าง</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card grid skeleton */}
               <div className="grid grid-cols-3 gap-2">
                 {[...Array(6)].map((_,i) => (
-                  <div key={i} className="h-12 bg-white rounded-xl border border-gray-100 shadow-sm" />
+                  <div key={i} className="h-14 bg-white rounded-xl border border-gray-100 shadow-sm" />
                 ))}
               </div>
             </div>
@@ -193,23 +172,25 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Floating card 2 — tagline */}
+          {/* Floating card 2 — tagline line 1 */}
           <motion.div
             className="absolute -bottom-5 -left-10 glass rounded-2xl px-4 py-3 shadow-xl"
             animate={{ y: [0,10,0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}>
-            <div className="text-xs font-bold text-gray-800 leading-relaxed">
-              สร้างเว็บไซต์ด้วย AI ใน 5 นาที<br/>
-              สร้างเว็บสวยพร้อมออนไลน์ ใช้งานได้ทันที<br/>
-              ไม่ต้องมีความรู้เรื่องโค้ด
-            </div>
+            <div className="text-xs font-bold text-gray-800">สร้างเว็บไซต์ด้วย AI ใน 5 นาที</div>
           </motion.div>
 
-          {/* Badge — 10k+ */}
+          {/* Floating card 3 — tagline line 2 */}
           <motion.div
-            className="absolute top-1/2 -translate-y-1/2 -left-14 glass rounded-2xl px-4 py-3 shadow-xl text-center"
+            className="absolute bottom-16 -right-10 glass rounded-2xl px-4 py-3 shadow-xl"
+            animate={{ y: [0,-8,0] }} transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}>
+            <div className="text-xs font-bold text-gray-800">สร้างเว็บสวยพร้อมออนไลน์ ใช้งานได้ทันที</div>
+          </motion.div>
+
+          {/* Badge — tagline line 3 */}
+          <motion.div
+            className="absolute top-1/2 -translate-y-1/2 -left-14 glass rounded-2xl px-4 py-3 shadow-xl"
             animate={{ x: [0,6,0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}>
-            <div className="text-2xl font-extrabold text-brand-600">10K+</div>
-            <div className="text-xs text-gray-400">เว็บที่สร้างแล้ว</div>
+            <div className="text-xs font-bold text-gray-800">ไม่ต้องมีความรู้เรื่องโค้ด</div>
           </motion.div>
         </motion.div>
       </div>
