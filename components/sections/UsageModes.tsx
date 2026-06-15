@@ -42,7 +42,9 @@ export default function UsageModes() {
   return (
     <section id="usage-modes" className="py-24 px-6 relative overflow-hidden" style={{ background: '#f8fafc' }}>
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(187,247,208,0.25) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse 55% 45% at 0% 50%, rgba(255,172,190,0.2) 0%, transparent 65%)' }} />
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 55% 45% at 100% 50%, rgba(187,247,208,0.25) 0%, transparent 65%)' }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading
@@ -50,6 +52,7 @@ export default function UsageModes() {
           title="2 รูปแบบ"
           titleGreen="การใช้งาน"
           subtitle="เริ่มจากศูนย์ก็ได้ หรือนำเว็บที่มีอยู่แล้วเข้ามาก็ได้ – สุดท้ายได้เว็บออนไลน์เหมือนกัน"
+          variant="vivid"
         />
 
         <div className="relative grid md:grid-cols-2 gap-6">

@@ -29,7 +29,7 @@ const Row = ({ items, reverse = false }: { items: typeof LOGOS; reverse?: boolea
 
 export default function LogoMarquee() {
   return (
-    <section className="py-14 overflow-hidden bg-gray-50/60 border-y border-gray-100">
+    <section className="py-14 overflow-hidden border-y" style={{ background: 'linear-gradient(135deg, rgba(240,253,244,0.8) 0%, rgba(255,240,246,0.8) 100%)', borderColor: '#f3e6ef' }}>
       <motion.p
         className="text-center text-sm font-semibold text-gray-400 tracking-widest uppercase mb-8"
         initial={{ opacity: 0, y: 16 }}

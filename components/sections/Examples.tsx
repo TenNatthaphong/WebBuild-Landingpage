@@ -157,12 +157,13 @@ export default function Examples() {
       <motion.div className="text-center mb-14 px-6"
         initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.65, ease: [0.22,1,0.36,1] }}>
-        <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-brand-100 text-brand-700 text-sm font-semibold border border-brand-200">
+        <span className="inline-block mb-4 px-4 py-1.5 rounded-full text-sm font-semibold border"
+          style={{ background: 'rgba(255,240,246,0.9)', borderColor: 'rgba(233,30,99,0.22)', color: '#ad1457' }}>
           ตัวอย่างเว็บ
         </span>
         <h2 className="text-4xl md:text-5xl font-extrabold text-gray-950 leading-tight">
           เว็บที่สร้างด้วย{' '}
-          <span className="text-gradient-green">HostingLotus AI</span>
+          <span className="text-gradient-vivid">HostingLotus AI</span>
         </h2>
         <p className="mt-3 text-gray-500 text-lg">ตัวอย่างจริงจากธุรกิจไทยที่ใช้ AI สร้างเว็บกับเรา</p>
       </motion.div>

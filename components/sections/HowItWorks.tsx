@@ -231,13 +231,18 @@ export default function HowItWorks() {
   const ActivePreview = STEPS[active].Preview
 
   return (
-    <section id="how-it-works" className="py-24 px-6 bg-white">
+    <section id="how-it-works" className="py-24 px-6 relative overflow-hidden" style={{ background: '#ffffff' }}>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-15 pointer-events-none animate-blob"
+        style={{ background: 'radial-gradient(circle, rgba(255,172,190,0.8) 0%, transparent 65%)', transform: 'translate(25%,-25%)' }} />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] rounded-full opacity-10 pointer-events-none animate-blob delay-4000"
+        style={{ background: 'radial-gradient(circle, rgba(187,247,208,0.9) 0%, transparent 65%)', transform: 'translate(-25%,25%)' }} />
       <div className="max-w-6xl mx-auto">
         <SectionHeading
           eyebrow="วิธีใช้งาน"
           title="สร้างเว็บใน"
           titleGreen="4 ขั้นตอน"
           subtitle="เลื่อนลงเพื่อดูแต่ละขั้นตอน – ง่ายกว่าที่คิด เร็วกว่าที่คาด"
+          variant="pink"
         />
 
         <div className="grid lg:grid-cols-2 gap-16">

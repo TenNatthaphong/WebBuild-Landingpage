@@ -79,6 +79,7 @@ export default function Pricing() {
           title="เริ่มสร้างได้ฟรี"
           titleGreen="จ่ายเฉพาะตอนจะ Publish จริง"
           subtitle="ไม่มีค่า Subscription บังคับ ไม่มีค่าธรรมเนียมซ่อนเร้น"
+          variant="vivid"
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
@@ -94,7 +95,8 @@ export default function Pricing() {
               whileHover={{ y: -5 }}>
 
               {p.badge && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-brand-600 text-white text-xs font-extrabold rounded-full shadow-lg shadow-brand-600/30">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 text-white text-xs font-extrabold rounded-full shadow-lg"
+                  style={{ background: 'linear-gradient(135deg, #43a047, #e91e63)', boxShadow: '0 4px 14px rgba(233,30,99,0.35)' }}>
                   {p.badge}
                 </div>
               )}
@@ -106,7 +108,8 @@ export default function Pricing() {
               </div>
 
               <motion.a href="#"
-                className={`block w-full text-center py-3 rounded-2xl text-sm font-bold mb-6 transition-all ${p.btnClass}`}
+                className={`block w-full text-center py-3 rounded-2xl text-sm font-bold mb-6 transition-all ${p.highlight ? '' : p.btnClass}`}
+                style={p.highlight ? { background: 'linear-gradient(135deg,#43a047,#e91e63)', color: '#fff', boxShadow: '0 4px 18px rgba(233,30,99,0.28)' } : {}}
                 whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
                 {p.btnLabel}
               </motion.a>

@@ -45,8 +45,10 @@ const FEATS = [
 export default function Features() {
   return (
     <section id="features" className="py-24 px-6 relative overflow-hidden" style={{ background: '#fafafa' }}>
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-20 pointer-events-none animate-blob-slow"
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-25 pointer-events-none animate-blob-slow"
         style={{ background: 'radial-gradient(circle, rgba(187,247,208,0.9) 0%, transparent 65%)', transform: 'translate(20%,-30%)' }} />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full opacity-20 pointer-events-none animate-blob delay-4000"
+        style={{ background: 'radial-gradient(circle, rgba(255,172,190,0.8) 0%, transparent 65%)', transform: 'translate(-25%,30%)' }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading
@@ -54,6 +56,7 @@ export default function Features() {
           title="ทำไมต้องเลือกทำเว็บกับ"
           titleGreen="น้องใบบัว?"
           subtitle="ไม่ใช่แค่สร้างเว็บได้ – แต่ตอบโจทย์ธุรกิจจริงๆ ด้วยเหตุผลเหล่านี้"
+          variant="pink"
         />
 
         <div className="grid md:grid-cols-3 gap-5">
@@ -145,20 +148,20 @@ export default function Features() {
             </motion.div>
           ))}
 
-          {/* 06 — full-width closing card, light teal */}
+          {/* 06 — full-width closing card, pink-green */}
           {(() => {
             const f = FEATS[5]
             return (
               <motion.div
                 className="md:col-span-3 relative rounded-3xl overflow-hidden p-9"
-                style={{ background: 'linear-gradient(135deg,#ccfbf1 0%,#e0f2fe 100%)', border: '1.5px solid #99f6e4' }}
+                style={{ background: 'linear-gradient(135deg,#fce4ec 0%,#f0fdf4 50%,#dbeafe 100%)', border: '1.5px solid #f8bbd0' }}
                 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1, ease: [0.22,1,0.36,1] }}
                 whileHover={{ y: -4 }}>
                 <div className="absolute inset-0 pointer-events-none"
-                  style={{ background: 'radial-gradient(ellipse 40% 100% at 85% 50%, rgba(255,255,255,0.5) 0%, transparent 60%)' }} />
+                  style={{ background: 'radial-gradient(ellipse 40% 100% at 85% 50%, rgba(255,255,255,0.6) 0%, transparent 60%)' }} />
                 <div className="absolute inset-0 pointer-events-none"
-                  style={{ opacity: 0.07, backgroundImage: 'radial-gradient(circle, #0f766e 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                  style={{ opacity: 0.07, backgroundImage: 'radial-gradient(circle, #e91e63 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-10">
                   <div className="flex-1">
                     <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
@@ -169,9 +172,11 @@ export default function Features() {
                     <p className="text-gray-600 text-sm leading-relaxed max-w-xl">{f.body}</p>
                   </div>
                   <div className="flex flex-wrap gap-2 md:flex-col md:items-end flex-shrink-0">
-                    {f.tags.map(t => (
+                    {f.tags.map((t, ti) => (
                       <span key={t} className="px-4 py-2 rounded-xl text-sm font-semibold"
-                        style={{ background: 'rgba(15,118,110,0.1)', color: '#0f766e', border: '1px solid rgba(15,118,110,0.2)' }}>{t}</span>
+                        style={ti % 2 === 0
+                          ? { background: 'rgba(233,30,99,0.08)', color: '#c2185b', border: '1px solid rgba(233,30,99,0.18)' }
+                          : { background: 'rgba(67,160,71,0.08)',  color: '#2e7d32', border: '1px solid rgba(67,160,71,0.2)' }}>{t}</span>
                     ))}
                   </div>
                 </div>

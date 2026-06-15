@@ -22,6 +22,7 @@ export default function Highlights() {
           title="ครบทุกอย่างที่เว็บต้องการ"
           titleGreen="ในที่เดียว"
           subtitle="ตั้งแต่สร้าง แก้ไข จน Publish – BAIBUA จัดการให้ครบ ไม่ต้องใช้เครื่องมืออื่นเพิ่ม"
+          variant="vivid"
         />
 
         <div className="grid md:grid-cols-3 gap-5">

@@ -1,4 +1,6 @@
+'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const COLS = [
   {
@@ -17,28 +19,40 @@ const COLS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-800 text-white">
+    <footer style={{ background: '#0d1f0e' }}>
+      {/* Top gradient accent bar */}
+      <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, #43a047 0%, #2e7d32 30%, #c2185b 70%, #e91e63 100%)' }} />
+
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-0.5 text-xl font-extrabold mb-4">
-              <span className="text-white">HOSTING</span>
-              <span className="text-brand-300">LOTUS</span>
+            <div className="mb-4">
+              <Image
+                src="/hosting-lotus-logo.png"
+                alt="HostingLotus"
+                width={160}
+                height={40}
+                className="h-9 w-auto object-contain brightness-0 invert"
+              />
             </div>
-            <p className="text-brand-200/70 text-sm leading-relaxed mb-5">
+            <p className="text-white/50 text-sm leading-relaxed mb-5">
               บริษัท เมตราไบต์ คลาวด์ จำกัด<br />
               ประสบการณ์มากกว่า 10 ปี ด้าน Network,<br />
               Microsoft และ Google Cloud
             </p>
             <div className="flex gap-3">
-              {['LINE','FB','IG','TW'].map(s => (
+              {(['LINE','FB','IG','TW']).map(s => (
                 <a key={s} href="#"
-                  className="w-9 h-9 rounded-xl bg-brand-700 hover:bg-brand-600 transition-colors flex items-center justify-center text-xs font-bold text-brand-200">
+                  className="footer-social w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold text-white/70 hover:text-white transition-all">
                   {s}
                 </a>
               ))}
             </div>
+            <style jsx>{`
+              .footer-social { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); }
+              .footer-social:hover { background: rgba(233,30,99,0.25); border-color: rgba(233,30,99,0.4); }
+            `}</style>
           </div>
 
           {/* Link columns */}
@@ -48,7 +62,7 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map(l => (
                   <li key={l}>
-                    <Link href="#" className="text-brand-200/70 hover:text-white text-sm transition-colors">{l}</Link>
+                    <Link href="#" className="text-white/50 hover:text-white text-sm transition-colors">{l}</Link>
                   </li>
                 ))}
               </ul>
@@ -57,13 +71,13 @@ export default function Footer() {
         </div>
 
         {/* Contact bar */}
-        <div className="border-t border-brand-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-wrap gap-6 text-sm text-brand-200/60">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-wrap gap-6 text-sm text-white/40">
             <span>📞 02-1054-322</span>
             <span>✉ support@metrabyte.cloud</span>
             <span>💬 Line: @hostinglotus</span>
           </div>
-          <p className="text-xs text-brand-200/40">© 2024 HostingLotus · Metrabyte Cloud Co., Ltd. · All rights reserved.</p>
+          <p className="text-xs text-white/30">© 2024 HostingLotus · Metrabyte Cloud Co., Ltd. · All rights reserved.</p>
         </div>
       </div>
     </footer>
