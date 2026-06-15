@@ -48,17 +48,17 @@ export default function Hero() {
 
       {/* ── Parallax blobs ── */}
       <motion.div ref={b1}
-        style={{ scale: bgScale, background: 'radial-gradient(circle, rgba(187,247,208,0.6) 0%, rgba(134,239,172,0.3) 40%, transparent 70%)' }}
-        className="absolute -top-[15%] -left-[10%] w-[750px] h-[750px] rounded-full animate-blob pointer-events-none" />
+        style={{ scale: bgScale, background: 'radial-gradient(circle, rgba(255,179,198,0.70) 0%, rgba(255,172,190,0.35) 45%, transparent 70%)' }}
+        className="absolute -top-[10%] -left-[8%] w-[720px] h-[720px] rounded-full animate-blob pointer-events-none" />
       <div ref={b2}
-        className="absolute top-[0%] right-[-12%] w-[650px] h-[650px] rounded-full animate-blob delay-4000 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(253,230,138,0.5) 0%, rgba(251,191,36,0.2) 35%, transparent 70%)' }} />
+        className="absolute top-[0%] right-[-10%] w-[620px] h-[620px] rounded-full animate-blob delay-4000 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(192,216,248,0.55) 0%, rgba(184,240,222,0.25) 40%, transparent 70%)' }} />
       <div ref={b3}
-        className="absolute bottom-[-25%] left-[35%] w-[500px] h-[500px] rounded-full animate-blob-slow delay-2000 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(187,247,208,0.4) 0%, transparent 65%)' }} />
+        className="absolute bottom-[-20%] left-[30%] w-[500px] h-[500px] rounded-full animate-blob-slow delay-2000 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(184,240,200,0.45) 0%, transparent 65%)' }} />
       <div ref={b4}
-        className="absolute top-[40%] left-[60%] w-[400px] h-[400px] rounded-full animate-blob delay-6000 pointer-events-none opacity-40"
-        style={{ background: 'radial-gradient(circle, rgba(252,211,77,0.3) 0%, transparent 65%)' }} />
+        className="absolute top-[45%] left-[55%] w-[380px] h-[380px] rounded-full animate-blob delay-6000 pointer-events-none opacity-50"
+        style={{ background: 'radial-gradient(circle, rgba(233,30,99,0.18) 0%, transparent 65%)' }} />
 
       {/* ── Grid lines ── */}
       <div className="absolute inset-0 opacity-[0.025]"
@@ -68,16 +68,17 @@ export default function Hero() {
         {/* ── Left: Copy ── */}
         <motion.div variants={stagger} initial="hidden" animate="show" style={{ y: textY }} className="space-y-7">
           <motion.div variants={item}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-100/80 border border-brand-200 text-brand-700 text-sm font-semibold backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse-green" />
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm border"
+            style={{ background: 'rgba(255,240,246,0.85)', borderColor: 'rgba(233,30,99,0.25)', color: '#ad1457' }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#e91e63' }} />
             BAIBUA — AI Web Builder สัญชาติไทย
           </motion.div>
 
           <motion.div variants={item} className="space-y-1">
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">สร้างเว็บไซต์</h1>
-            <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gradient-green">
+            <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gradient-vivid">
               ด้วย AI
-              <span className="inline-block w-[3px] h-[0.9em] bg-brand-500 ml-2 align-middle animate-pulse" />
+              <span className="inline-block w-[3px] h-[0.9em] bg-pink-500 ml-2 align-middle animate-pulse" />
             </h1>
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">ในไม่กี่นาที</h1>
           </motion.div>
@@ -89,7 +90,8 @@ export default function Hero() {
 
           <motion.div variants={item} className="flex flex-wrap gap-4">
             <motion.a href="#"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-600 to-brand-500 text-white font-bold text-lg shadow-lg shadow-brand-600/30 transition-shadow hover:shadow-brand-600/50"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-lg shadow-lg shadow-pink-500/25 transition-shadow hover:shadow-pink-500/40"
+              style={{ background: 'linear-gradient(135deg, #43a047 0%, #2e7d32 40%, #c2185b 75%, #e91e63 100%)' }}
               whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Zap size={18} strokeWidth={2.5} /> เริ่มสร้างด้วย AI ฟรี
             </motion.a>

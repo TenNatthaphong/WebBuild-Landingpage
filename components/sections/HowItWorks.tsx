@@ -202,7 +202,7 @@ function PreviewStep4() {
 
 const STEPS = [
   { num: '01', color: '#43a047', Icon: FileText, title: 'กรอกบรีฟ', body: 'ใส่ชื่อเว็บ ธุรกิจ สินค้า/บริการ และเลือกสไตล์ที่ชอบ ไม่ต้องรู้โค้ด พิมพ์ภาษาไทยธรรมดา', Preview: PreviewStep1 },
-  { num: '02', color: '#0891b2', Icon: Bot,      title: 'น้องใบบัวสร้างเว็บให้', body: 'รอประมาณ 3–5 นาที AI จะออกแบบและเขียนเว็บให้ครบ ปิดแท็บได้ ระบบสร้างต่อเนื่องในพื้นหลัง', Preview: PreviewStep2 },
+  { num: '02', color: '#0891b2', Icon: Bot,      title: 'น้องใบบัวสร้างเว็บให้', body: 'รอประมาณ 5-7 นาที AI จะออกแบบและเขียนเว็บให้ครบ ปิดแท็บได้ ระบบสร้างต่อเนื่องในพื้นหลัง', Preview: PreviewStep2 },
   { num: '03', color: '#7c3aed', Icon: PenTool,  title: 'ปรับแก้ตามต้องการ', body: 'เว็บพร้อมแล้ว สั่ง AI แก้ข้อความ รูป สี หรือเพิ่มส่วนใหม่ได้เลย พิมพ์ภาษาไทยธรรมดา', Preview: PreviewStep3 },
   { num: '04', color: '#ea580c', Icon: Globe,    title: 'Publish เว็บจริง', body: 'กด Publish เว็บออนไลน์ทันที มี URL จริง SSL ฟรี แก้ไขต่อได้ตลอด ไม่ต้องรอ', Preview: PreviewStep4 },
 ]

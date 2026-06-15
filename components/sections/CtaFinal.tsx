@@ -23,29 +23,25 @@ export default function CtaFinal() {
   return (
     <section
       className="relative overflow-hidden py-32 px-6 text-center"
-      style={{ background: 'linear-gradient(160deg, #f0fdf4 0%, #dcfce7 45%, #f0fdf4 100%)' }}>
+      style={{ background: 'linear-gradient(160deg, #fff0f6 0%, #fce4ec 30%, #f0fdf4 65%, #dcfce7 100%)' }}>
 
       {/* Center radial spotlight */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 55% at 50% 35%, rgba(74,222,128,0.2) 0%, transparent 65%)' }} />
+        style={{ background: 'radial-gradient(ellipse 70% 55% at 50% 35%, rgba(233,30,99,0.08) 0%, transparent 60%)' }} />
 
       {/* Dot grid */}
       <div className="absolute inset-0 pointer-events-none"
         style={{
-          opacity: 0.22,
-          backgroundImage: 'radial-gradient(circle, #86efac 1px, transparent 1px)',
+          opacity: 0.18,
+          backgroundImage: 'radial-gradient(circle, #f48fb1 1px, transparent 1px)',
           backgroundSize: '30px 30px',
         }} />
 
-      {/* Noise texture */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
-        style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
-
       {/* Glow orbs */}
       <div className="absolute -top-1/3 -left-1/4 w-[600px] h-[600px] rounded-full pointer-events-none animate-blob"
-        style={{ background: 'radial-gradient(circle, rgba(134,239,172,0.35) 0%, transparent 60%)' }} />
+        style={{ background: 'radial-gradient(circle, rgba(255,172,190,0.45) 0%, transparent 60%)' }} />
       <div className="absolute -bottom-1/3 -right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none animate-blob delay-4000"
-        style={{ background: 'radial-gradient(circle, rgba(187,247,208,0.4) 0%, transparent 60%)' }} />
+        style={{ background: 'radial-gradient(circle, rgba(184,240,200,0.45) 0%, transparent 60%)' }} />
 
       {/* Sparkle particles */}
       {SPARKLES.map((s, i) => (
@@ -55,7 +51,7 @@ export default function CtaFinal() {
             width: s.size, height: s.size,
             top: (s as any).top, left: (s as any).left,
             right: (s as any).right, bottom: (s as any).bottom,
-            background: '#22c55e',
+            background: i % 2 === 0 ? '#e91e63' : '#43a047',
           }}
           animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0.7, 0.3] }}
           transition={{ duration: 2.8 + i * 0.25, delay: s.delay, repeat: Infinity, ease: 'easeInOut' }}
@@ -72,10 +68,11 @@ export default function CtaFinal() {
 
         {/* Eyebrow */}
         <motion.div
-          className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-brand-300 bg-white/70 backdrop-blur-sm"
+          className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-sm border"
+          style={{ borderColor: 'rgba(233,30,99,0.3)', color: '#ad1457' }}
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
-          <span className="text-brand-700 text-sm font-semibold">เริ่มต้นได้วันนี้ ฟรี ไม่มีเงื่อนไข</span>
+          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#e91e63' }} />
+          <span className="text-sm font-semibold">เริ่มต้นได้วันนี้ ฟรี ไม่มีเงื่อนไข</span>
         </motion.div>
 
         {/* Headline */}
@@ -83,7 +80,7 @@ export default function CtaFinal() {
           className="text-5xl md:text-7xl font-extrabold text-gray-950 leading-[1.08] mb-5"
           initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.18 }}>
           เปลี่ยนไอเดีย<br />
-          ให้เป็น<span className="text-gradient-green"> เว็บจริง</span>
+          ให้เป็น<span className="text-gradient-vivid"> เว็บจริง</span>
         </motion.h2>
 
         <motion.p
@@ -112,12 +109,14 @@ export default function CtaFinal() {
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
           <div className="relative">
             <motion.div
-              className="absolute inset-0 rounded-2xl bg-brand-500"
-              animate={{ scale: [1, 1.18, 1], opacity: [0.4, 0, 0.4] }}
+              className="absolute inset-0 rounded-2xl"
+              style={{ background: '#e91e63' }}
+              animate={{ scale: [1, 1.18, 1], opacity: [0.35, 0, 0.35] }}
               transition={{ duration: 2.2, repeat: Infinity, ease: 'easeOut' }}
             />
             <motion.a href="#"
-              className="relative inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-lg transition-colors shadow-lg shadow-brand-600/25"
+              className="relative inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl text-white font-extrabold text-lg shadow-lg"
+              style={{ background: 'linear-gradient(135deg, #43a047 0%, #2e7d32 40%, #c2185b 75%, #e91e63 100%)', boxShadow: '0 8px 32px rgba(233,30,99,0.28)' }}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}>
               <Zap size={18} strokeWidth={2.5} /> เริ่มสร้างด้วย AI ฟรี

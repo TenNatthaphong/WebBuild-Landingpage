@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 
 const LINKS = [
@@ -48,9 +49,15 @@ export default function Navbar() {
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-0.5 text-xl font-extrabold select-none shrink-0">
-          <span className="text-gray-950">HOSTING</span>
-          <span className="text-brand-500">LOTUS</span>
+        <Link href="/" className="shrink-0 flex items-center" aria-label="HostingLotus">
+          <Image
+            src="/hosting-lotus-logo.png"
+            alt="HostingLotus"
+            width={160}
+            height={40}
+            className="h-9 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Links */}

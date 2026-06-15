@@ -24,6 +24,17 @@ const config: Config = {
           800: '#145214',
           900: '#0d3b0d',
         },
+        pink: {
+          50:  '#fff0f6',
+          100: '#fce4ec',
+          200: '#f8bbd0',
+          300: '#f48fb1',
+          400: '#f06292',
+          500: '#e91e63',
+          600: '#c2185b',
+          700: '#ad1457',
+          800: '#880e4f',
+        },
       },
       animation: {
         blob:           'blob 14s infinite ease-in-out',
