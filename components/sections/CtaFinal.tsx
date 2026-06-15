@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { Zap, ArrowRight, Check } from 'lucide-react'
 
 const STATS = [
   { value: '50', unit: 'เครดิต', label: 'ฟรีสำหรับผู้ใช้ใหม่' },
@@ -119,14 +120,14 @@ export default function CtaFinal() {
               className="relative inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-lg transition-colors shadow-lg shadow-brand-600/25"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}>
-              ⚡ เริ่มสร้างด้วย AI ฟรี
+              <Zap size={18} strokeWidth={2.5} /> เริ่มสร้างด้วย AI ฟรี
             </motion.a>
           </div>
           <motion.a href="#examples"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white border border-gray-200 text-gray-700 font-bold text-lg hover:border-brand-300 hover:text-brand-700 transition-all shadow-sm"
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}>
-            ดูตัวอย่างเว็บ →
+            ดูตัวอย่างเว็บ <ArrowRight size={18} strokeWidth={2} />
           </motion.a>
         </motion.div>
 
@@ -136,7 +137,7 @@ export default function CtaFinal() {
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
           {['ไม่ต้องบัตรเครดิต', 'สร้างเว็บได้ทันที', 'รองรับภาษาไทย 100%', 'Support ทีมไทย'].map(t => (
             <span key={t} className="flex items-center gap-1.5 text-sm text-gray-400">
-              <span className="text-brand-500">✓</span> {t}
+              <Check size={13} strokeWidth={2.5} className="text-brand-500 flex-shrink-0" /> {t}
             </span>
           ))}
         </motion.div>

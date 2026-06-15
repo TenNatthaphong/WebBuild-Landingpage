@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { Check } from 'lucide-react'
 import SectionHeading from '@/components/ui/SectionHeading'
 
 const PLANS = [
@@ -113,7 +114,7 @@ export default function Pricing() {
               <ul className="space-y-2.5">
                 {p.features.map(f => (
                   <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
-                    <span className="text-brand-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                    <Check size={14} strokeWidth={2.5} className="text-brand-500 mt-0.5 flex-shrink-0" />
                     {f}
                   </li>
                 ))}

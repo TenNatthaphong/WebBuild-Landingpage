@@ -1,9 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
+import { Languages, CreditCard, Globe } from 'lucide-react'
 import SectionHeading from '@/components/ui/SectionHeading'
 
 const fadeUp = (delay = 0) => ({
-  // removed scroll-triggered entrance props to avoid animating on scroll
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
   transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] as const },
 })
 
@@ -29,7 +32,6 @@ export default function Highlights() {
             style={{ background: 'linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%)', border: '1.5px solid #bbf7d0' }}
             whileHover={{ y: -4 }}>
 
-            {/* Big stat watermark */}
             <div className="absolute -bottom-4 right-6 text-[130px] font-extrabold leading-none select-none pointer-events-none text-brand-100">100%</div>
 
             {/* Mini chat bubbles */}
@@ -47,7 +49,9 @@ export default function Highlights() {
             </div>
 
             <div className="relative z-10">
-              <div className="w-14 h-14 rounded-2xl bg-brand-500 flex items-center justify-center text-2xl mb-6 shadow-lg shadow-brand-500/20">🇹🇭</div>
+              <div className="w-14 h-14 rounded-2xl bg-brand-500 flex items-center justify-center mb-6 shadow-lg shadow-brand-500/20">
+                <Languages size={26} strokeWidth={1.8} color="white" />
+              </div>
               <h3 className="text-2xl font-extrabold text-gray-950 mb-3">คุยภาษาไทยได้เลย 100%</h3>
               <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
                 สื่อสารกับน้องใบบัวเป็นภาษาพูดปกติ ไม่ต้องรู้ศัพท์เทคนิคใดๆ AI เข้าใจและสร้างเว็บให้ทันที
@@ -61,7 +65,6 @@ export default function Highlights() {
             style={{ border: '1.5px solid #e5e7eb', boxShadow: '0 4px 24px rgba(0,0,0,0.05)' }}
             whileHover={{ y: -4 }}>
 
-            {/* Payment steps visual */}
             <div className="absolute bottom-7 left-8 right-8 space-y-2 pointer-events-none">
               {[
                 { label: 'สร้างเว็บ', done: true, free: true },
@@ -84,13 +87,15 @@ export default function Highlights() {
             </div>
 
             <div className="relative z-10">
-              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-2xl mb-6">💳</div>
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-6">
+                <CreditCard size={24} strokeWidth={1.8} color="#2563eb" />
+              </div>
               <h3 className="text-xl font-extrabold text-gray-950 mb-2">จ่ายเมื่อ<br />Publish จริง</h3>
               <p className="text-gray-500 text-xs leading-relaxed">ทดลองสร้างและแก้ไขได้ฟรีไม่จำกัด</p>
             </div>
           </motion.div>
 
-          {/* Card 3 — Domain + SSL + Hosting (full width, dark) */}
+          {/* Card 3 — Domain + SSL + Hosting (full width, light) */}
           <motion.div {...fadeUp(0.2)}
             className="md:col-span-3 relative rounded-3xl overflow-hidden p-9"
             style={{ background: 'linear-gradient(135deg,#f0fdf4 0%,#dbeafe 100%)', border: '1.5px solid #bbf7d0' }}
@@ -103,7 +108,9 @@ export default function Highlights() {
 
             <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-10">
               <div className="flex-1">
-                <div className="w-14 h-14 rounded-2xl bg-brand-100 border border-brand-200 flex items-center justify-center text-2xl mb-6">🌐</div>
+                <div className="w-14 h-14 rounded-2xl bg-brand-100 border border-brand-200 flex items-center justify-center mb-6">
+                  <Globe size={24} strokeWidth={1.8} color="#16a34a" />
+                </div>
                 <h3 className="text-2xl font-extrabold text-gray-950 mb-3">Domain + SSL + Hosting ครบ</h3>
                 <p className="text-gray-600 text-sm leading-relaxed max-w-md">
                   เชื่อมโดเมนได้เอง รับ SSL ฟรีอัตโนมัติ Hosting พร้อมใช้ด้วยคลิกเดียว ทุกอย่างในที่เดียว ไม่ต้องใช้เครื่องมืออื่นเพิ่ม

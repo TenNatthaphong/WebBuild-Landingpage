@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import dynamic from 'next/dynamic'
+import { Zap, Play, Check } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -90,19 +91,19 @@ export default function Hero() {
             <motion.a href="#"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-600 to-brand-500 text-white font-bold text-lg shadow-lg shadow-brand-600/30 transition-shadow hover:shadow-brand-600/50"
               whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
-              ⚡ เริ่มสร้างด้วย AI ฟรี
+              <Zap size={18} strokeWidth={2.5} /> เริ่มสร้างด้วย AI ฟรี
             </motion.a>
             <motion.a href="#how-it-works"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white border border-gray-200 text-gray-800 font-bold text-lg hover:border-brand-300 hover:text-brand-700 transition-all shadow-sm"
               whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
-              ▶ ดูวิดีโอสาธิต
+              <Play size={16} strokeWidth={2} fill="currentColor" /> ดูวิดีโอสาธิต
             </motion.a>
           </motion.div>
 
           <motion.div variants={item} className="flex flex-wrap gap-x-6 gap-y-2.5 text-sm text-gray-500 pt-1">
             {['ไม่ต้องบัตรเครดิต','เครดิตฟรี 50 ครั้งแรก','เริ่มใช้งานได้ทันที','Support ภาษาไทย'].map(t => (
               <span key={t} className="flex items-center gap-1.5">
-                <span className="text-brand-500 font-bold">✓</span> {t}
+                <Check size={13} strokeWidth={2.5} className="text-brand-500 flex-shrink-0" /> {t}
               </span>
             ))}
           </motion.div>
@@ -128,9 +129,9 @@ export default function Hero() {
                 my-coffee-shop.hostinglotus.cloud
               </div>
               <motion.div
-                className="px-3 py-1.5 bg-brand-600 text-white text-xs font-bold rounded-lg cursor-pointer"
+                className="px-3 py-1.5 bg-brand-600 text-white text-xs font-bold rounded-lg cursor-pointer flex items-center gap-1"
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                ⚡ Publish
+                <Zap size={11} strokeWidth={2.5} /> Publish
               </motion.div>
             </div>
 
