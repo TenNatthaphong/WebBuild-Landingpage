@@ -61,37 +61,39 @@ export default function Highlights() {
 
           {/* Card 2 — จ่ายเมื่อ Publish (1 col, white) */}
           <motion.div {...fadeUp(0.1)}
-            className="relative rounded-3xl overflow-hidden p-8 flex flex-col justify-between min-h-[300px] bg-white group"
+            className="rounded-3xl overflow-hidden p-8 flex flex-col gap-6 bg-white"
             style={{ border: '1.5px solid #e5e7eb', boxShadow: '0 4px 24px rgba(0,0,0,0.05)' }}
             whileHover={{ y: -4 }}>
 
-            <div className="absolute bottom-7 left-8 right-8 space-y-2 pointer-events-none">
+            {/* Top: icon + title */}
+            <div>
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-5">
+                <CreditCard size={24} strokeWidth={1.8} color="#2563eb" />
+              </div>
+              <h3 className="text-xl font-extrabold text-gray-950 mb-1.5">จ่ายเมื่อ<br />Publish จริง</h3>
+              <p className="text-gray-500 text-xs leading-relaxed">ทดลองสร้างและแก้ไขได้ฟรีไม่จำกัด</p>
+            </div>
+
+            {/* Bottom: step rows */}
+            <div className="space-y-2 mt-auto">
               {[
-                { label: 'สร้างเว็บ', done: true, free: true },
-                { label: 'แก้ไขได้เสมอ', done: true, free: true },
-                { label: 'Publish จริง', done: false, credit: '1 Credit' },
+                { label: 'สร้างเว็บ',    free: true },
+                { label: 'แก้ไขได้เสมอ', free: true },
+                { label: 'Publish จริง', credit: '1 Credit' },
               ].map((r, i) => (
-                <div key={i} className={`flex items-center justify-between rounded-xl px-3 py-2 text-xs ${
+                <div key={i} className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-xs ${
                   r.credit ? 'bg-brand-600 text-white' : 'bg-gray-50 border border-gray-100 text-gray-500'
                 }`}>
                   <div className="flex items-center gap-2">
                     <div className={`w-5 h-5 rounded-lg flex items-center justify-center text-[10px] font-bold ${
                       r.credit ? 'bg-white/20 text-white' : 'bg-brand-100 text-brand-600'
-                    }`}>{r.done || r.credit ? '✓' : '○'}</div>
+                    }`}>✓</div>
                     {r.label}
                   </div>
-                  {r.free && <span className="text-[10px] text-brand-600 font-bold">ฟรี</span>}
+                  {r.free   && <span className="text-[10px] text-brand-600 font-bold">ฟรี</span>}
                   {r.credit && <span className="text-[10px] text-white/80 font-semibold">{r.credit}</span>}
                 </div>
               ))}
-            </div>
-
-            <div className="relative z-10">
-              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-6">
-                <CreditCard size={24} strokeWidth={1.8} color="#2563eb" />
-              </div>
-              <h3 className="text-xl font-extrabold text-gray-950 mb-2">จ่ายเมื่อ<br />Publish จริง</h3>
-              <p className="text-gray-500 text-xs leading-relaxed">ทดลองสร้างและแก้ไขได้ฟรีไม่จำกัด</p>
             </div>
           </motion.div>
 
