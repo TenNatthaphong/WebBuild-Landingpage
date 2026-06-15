@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -34,37 +34,36 @@ const SITES = [
   },
 ]
 
-// Duplicate 3× for seamless infinite loop
-const TRACK = [...SITES, ...SITES, ...SITES]
+// Duplicate for visual width on large screens
+const TRACK = [...SITES, ...SITES]
 
-function SiteCard({ site }: { site: typeof SITES[0] }) {
+function SiteCard({ site, dragging }: { site: typeof SITES[0]; dragging: boolean }) {
   const [hovered, setHovered] = useState(false)
 
   return (
     <motion.div
-      className="relative flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 cursor-pointer"
+      className="relative flex-shrink-0 rounded-2xl overflow-hidden border border-gray-100"
       style={{ width: 380 }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      animate={{ scale: hovered ? 1.04 : 1 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}>
+      animate={{ scale: hovered && !dragging ? 1.03 : 1 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}>
 
-      {/* Screenshot */}
       <div className="relative overflow-hidden" style={{ width: 380, aspectRatio: '16/9' }}>
         <Image
           src={site.img}
           alt={site.title}
           fill
           sizes="380px"
-          style={{ objectFit: 'cover', objectPosition: '0% 0%' }}
+          draggable={false}
+          style={{ objectFit: 'cover', objectPosition: '0% 0%', userSelect: 'none' }}
         />
       </div>
 
       {/* Hover overlay */}
       <motion.div
         className="absolute inset-0 flex flex-col items-center justify-center gap-3"
-        style={{ background: 'rgba(0,0,0,0)' }}
-        animate={{ background: hovered ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0)' }}
+        animate={{ background: hovered && !dragging ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0)' }}
         transition={{ duration: 0.25 }}>
         <motion.a
           href={site.url}
@@ -72,25 +71,59 @@ function SiteCard({ site }: { site: typeof SITES[0] }) {
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-gray-900 font-bold text-sm shadow-2xl hover:bg-gray-100 transition-colors"
           initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 12 }}
-          transition={{ duration: 0.25, delay: hovered ? 0.05 : 0 }}
-          onClick={e => e.stopPropagation()}>
+          animate={{ opacity: hovered && !dragging ? 1 : 0, y: hovered && !dragging ? 0 : 12 }}
+          transition={{ duration: 0.2 }}
+          onClick={e => { if (dragging) e.preventDefault(); e.stopPropagation() }}>
           ดูเว็บจริง
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </motion.a>
       </motion.div>
+
+      {/* Tag pill at bottom */}
+      <div className="absolute bottom-3 left-3">
+        <span className="px-2.5 py-1 rounded-lg bg-white/90 backdrop-blur-sm text-xs font-semibold text-gray-700 shadow-sm">
+          {site.tag}
+        </span>
+      </div>
     </motion.div>
   )
 }
 
 export default function Examples() {
-  const [paused, setPaused] = useState(false)
+  const trackRef   = useRef<HTMLDivElement>(null)
+  const startX     = useRef(0)
+  const scrollLeft = useRef(0)
+  const dragging   = useRef(false)
+  const moved      = useRef(false)
+  const [isDragging, setIsDragging] = useState(false)
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (!trackRef.current) return
+    dragging.current = true
+    moved.current    = false
+    startX.current   = e.pageX - trackRef.current.offsetLeft
+    scrollLeft.current = trackRef.current.scrollLeft
+    trackRef.current.setPointerCapture(e.pointerId)
+    setIsDragging(true)
+  }
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!dragging.current || !trackRef.current) return
+    const x    = e.pageX - trackRef.current.offsetLeft
+    const walk = (x - startX.current) * 1.2
+    if (Math.abs(walk) > 4) moved.current = true
+    trackRef.current.scrollLeft = scrollLeft.current - walk
+  }
+
+  const onPointerUp = () => {
+    dragging.current = false
+    setIsDragging(false)
+  }
 
   return (
     <section id="examples" className="py-24 bg-white overflow-hidden relative">
-      {/* Subtle green glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[300px] rounded-full blur-3xl opacity-10 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse,#86efac 0%,transparent 70%)' }} />
 
@@ -106,36 +139,41 @@ export default function Examples() {
           <span className="text-gradient-green">HostingLotus AI</span>
         </h2>
         <p className="mt-3 text-gray-500 text-lg">ตัวอย่างจริงจากธุรกิจไทยที่ใช้ AI สร้างเว็บกับเรา</p>
+        <p className="mt-2 text-gray-400 text-sm flex items-center justify-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/>
+          </svg>
+          ลากซ้าย-ขวาเพื่อดูเพิ่มเติม
+        </p>
       </motion.div>
 
       {/* Left / right fade masks */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-10"
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10"
         style={{ background: 'linear-gradient(to right,#ffffff,transparent)' }} />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-32 z-10"
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10"
         style={{ background: 'linear-gradient(to left,#ffffff,transparent)' }} />
 
-      {/* Scrolling track */}
+      {/* Draggable track */}
       <div
-        className="relative overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}>
-        <div
-          className="flex gap-5 w-max"
-          style={{
-            animation: `marquee-left 38s linear infinite`,
-            animationPlayState: paused ? 'paused' : 'running',
-          }}>
-          {TRACK.map((site, i) => (
-            <SiteCard key={i} site={site} />
-          ))}
-        </div>
+        ref={trackRef}
+        className="flex gap-5 px-8 overflow-x-auto select-none"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          cursor: isDragging ? 'grabbing' : 'grab',
+          WebkitOverflowScrolling: 'touch',
+        }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerLeave={onPointerUp}>
+        {TRACK.map((site, i) => (
+          <SiteCard key={i} site={site} dragging={isDragging && moved.current} />
+        ))}
       </div>
 
       <style jsx>{`
-        @keyframes marquee-left {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(calc(-380px * ${SITES.length} - 20px * ${SITES.length})); }
-        }
+        div::-webkit-scrollbar { display: none; }
       `}</style>
     </section>
   )

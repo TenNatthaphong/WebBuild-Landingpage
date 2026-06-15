@@ -167,7 +167,7 @@ export default function Hero() {
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white text-base animate-pulse-green">✓</div>
               <div>
-                <div className="text-xs font-bold text-gray-800">🚀 Publish สำเร็จ!</div>
+                <div className="text-xs font-bold text-gray-800">Publish สำเร็จ!</div>
                 <div className="text-xs text-gray-400">my-shop.hostinglotus.cloud</div>
               </div>
             </div>

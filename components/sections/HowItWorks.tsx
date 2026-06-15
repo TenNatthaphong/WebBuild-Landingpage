@@ -258,15 +258,6 @@ export default function HowItWorks() {
                     whileHover={{ x: isActive ? 0 : 3 }}
                     transition={{ duration: 0.2 }}>
 
-                    {/* Active left accent bar */}
-                    {isActive && (
-                      <motion.div
-                        className="absolute left-0 top-4 bottom-4 w-1 rounded-r-full"
-                        style={{ background: s.color }}
-                        initial={{ scaleY: 0 }} animate={{ scaleY: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
 
                     <div className="px-6 py-5 flex items-start gap-4 relative">
                       {/* Step icon */}
