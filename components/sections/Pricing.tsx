@@ -123,16 +123,19 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
+
+              {/* mascot-5 ที่มุมล่างขวาของ highlighted card เท่านั้น */}
+              {p.highlight && (
+                <motion.div className="absolute -bottom-14 -right-4 pointer-events-none select-none hidden md:block z-20"
+                  animate={{ y: [0,-10,0] }} transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}>
+                  <Image src="/mascot-5.png" alt="น้องใบบัว" width={140} height={140} style={{ objectFit: 'contain' }} />
+                </motion.div>
+              )}
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* mascot-5: watering — bottom-left */}
-      <motion.div className="absolute bottom-0 left-6 pointer-events-none select-none hidden md:block"
-        animate={{ y: [0, -10, 0] }} transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}>
-        <Image src="/mascot-5.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
-      </motion.div>
     </section>
   )
 }

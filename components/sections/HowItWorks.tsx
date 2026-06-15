@@ -256,9 +256,9 @@ export default function HowItWorks() {
             {STEPS.map((s, i) => {
               const isActive = active === i
               return (
-                <div key={i} id={`step-trigger-${i}`} className="min-h-[48vh] flex items-center py-4">
+                <div key={i} id={`step-trigger-${i}`} className="min-h-[48vh] flex items-center py-4 relative">
                   <motion.div
-                    className={`w-full rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-400 ${
+                    className={`w-full rounded-2xl border-2 cursor-pointer transition-all duration-400 ${
                       isActive
                         ? 'border-brand-300 bg-white shadow-xl shadow-brand-600/8'
                         : 'border-gray-100 bg-gray-50/60 hover:border-gray-200 hover:bg-white'
@@ -302,6 +302,14 @@ export default function HowItWorks() {
                       </div>
                     </div>
                   </motion.div>
+
+                  {/* mascot-1 โบกมือ ที่มุมล่างขวาของ step card แรก */}
+                  {i === 0 && (
+                    <motion.div className="absolute -bottom-14 -right-4 pointer-events-none select-none hidden md:block z-20"
+                      animate={{ y: [0,-10,0] }} transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}>
+                      <Image src="/mascot-1.png" alt="น้องใบบัว" width={130} height={130} style={{ objectFit: 'contain' }} />
+                    </motion.div>
+                  )}
                 </div>
               )
             })}
@@ -352,11 +360,6 @@ export default function HowItWorks() {
         </div>
       </div>
 
-      {/* mascot-1: waving — bottom-left */}
-      <motion.div className="absolute bottom-0 left-6 pointer-events-none select-none hidden md:block"
-        animate={{ y: [0, -10, 0] }} transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}>
-        <Image src="/mascot-1.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
-      </motion.div>
     </section>
   )
 }

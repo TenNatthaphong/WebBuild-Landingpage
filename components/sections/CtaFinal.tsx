@@ -62,6 +62,7 @@ export default function CtaFinal() {
       {/* Content */}
       <motion.div
         className="relative z-10 max-w-3xl mx-auto"
+        style={{ overflow: 'visible' }}
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
@@ -129,6 +130,12 @@ export default function CtaFinal() {
           </motion.a>
         </motion.div>
 
+        {/* mascot-6 ดีใจ มุมล่างขวาของ CTA box */}
+        <motion.div className="absolute -bottom-16 -right-16 pointer-events-none select-none hidden md:block z-20"
+          animate={{ y: [0,-12,0] }} transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}>
+          <Image src="/mascot-6.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
+        </motion.div>
+
         {/* Trust signals */}
         <motion.div
           className="flex flex-wrap justify-center gap-x-6 gap-y-2"
@@ -142,11 +149,6 @@ export default function CtaFinal() {
 
       </motion.div>
 
-      {/* mascot-6: happy — bottom-right */}
-      <motion.div className="absolute bottom-0 right-6 pointer-events-none select-none hidden md:block"
-        animate={{ y: [0, -10, 0] }} transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}>
-        <Image src="/mascot-6.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
-      </motion.div>
     </section>
   )
 }

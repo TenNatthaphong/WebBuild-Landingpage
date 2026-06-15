@@ -25,7 +25,7 @@ export default function FAQ() {
       <div className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse 50% 40% at 50% 0%, rgba(187,247,208,0.18) 0%, transparent 65%)' }} />
 
-      <div className="max-w-3xl mx-auto relative z-10">
+      <div className="max-w-3xl mx-auto relative z-10" style={{ overflow: 'visible' }}>
         <SectionHeading eyebrow="FAQ" title="คำถาม" titleGreen="ที่พบบ่อย" variant="vivid" />
 
         <div className="space-y-3">
@@ -72,13 +72,13 @@ export default function FAQ() {
             )
           })}
         </div>
+        {/* mascot-4 อ่านหนังสือ มุมล่างขวาของ FAQ box */}
+        <motion.div className="absolute -bottom-14 -right-10 pointer-events-none select-none hidden md:block z-20"
+          animate={{ y: [0,-10,0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}>
+          <Image src="/mascot-4.png" alt="น้องใบบัว" width={140} height={140} style={{ objectFit: 'contain' }} />
+        </motion.div>
       </div>
 
-      {/* mascot-4: reading — bottom-right */}
-      <motion.div className="absolute bottom-0 right-6 pointer-events-none select-none hidden md:block"
-        animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}>
-        <Image src="/mascot-4.png" alt="น้องใบบัว" width={150} height={150} style={{ objectFit: 'contain' }} />
-      </motion.div>
     </section>
   )
 }
