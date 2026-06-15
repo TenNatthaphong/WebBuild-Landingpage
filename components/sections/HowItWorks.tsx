@@ -309,7 +309,7 @@ export default function HowItWorks() {
 
           {/* Right: sticky preview */}
           <div className="hidden lg:block">
-            <div className="sticky top-24">
+            <div className="sticky" style={{ top: 'calc(50vh - 220px)' }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
