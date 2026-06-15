@@ -26,55 +26,61 @@ export default function Highlights() {
 
         <div className="grid md:grid-cols-3 gap-5">
 
-          {/* Card 1 — คุยภาษาไทย (2 cols, green) */}
+          {/* Card 1 — คุยภาษาไทย (2 cols, green) — left: text, right: bubbles */}
           <motion.div {...fadeUp(0)}
-            className="md:col-span-2 relative rounded-3xl overflow-hidden p-9 flex flex-col justify-between min-h-[300px] group"
+            className="md:col-span-2 rounded-3xl overflow-hidden p-9 flex flex-col sm:flex-row gap-8 min-h-[300px]"
             style={{ background: 'linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%)', border: '1.5px solid #bbf7d0' }}
             whileHover={{ y: -4 }}>
 
-            <div className="absolute -bottom-4 right-6 text-[130px] font-extrabold leading-none select-none pointer-events-none text-brand-100">100%</div>
-
-            {/* Mini chat bubbles */}
-            <div className="absolute bottom-8 right-8 space-y-2 pointer-events-none">
-              <div className="flex justify-end">
-                <div className="bg-brand-500 text-white text-[11px] leading-snug px-3 py-2 rounded-2xl rounded-br-none max-w-[180px] shadow-sm">
-                  อยากได้เว็บร้านกาแฟ สไตล์มินิมอล สีน้ำตาล
-                </div>
-              </div>
-              <div className="flex justify-start ml-2">
-                <div className="bg-white border border-gray-200 text-gray-500 text-[11px] leading-snug px-3 py-2 rounded-2xl rounded-bl-none max-w-[150px] shadow-sm">
-                  กำลังสร้างให้เลยค่ะ รอสักครู่... ☕
-                </div>
-              </div>
-            </div>
-
-            <div className="relative z-10">
+            {/* Left: icon + text */}
+            <div className="flex-1 flex flex-col justify-center">
               <div className="w-14 h-14 rounded-2xl bg-brand-500 flex items-center justify-center mb-6 shadow-lg shadow-brand-500/20">
                 <Languages size={26} strokeWidth={1.8} color="white" />
               </div>
               <h3 className="text-2xl font-extrabold text-gray-950 mb-3">คุยภาษาไทยได้เลย 100%</h3>
-              <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 สื่อสารกับน้องใบบัวเป็นภาษาพูดปกติ ไม่ต้องรู้ศัพท์เทคนิคใดๆ AI เข้าใจและสร้างเว็บให้ทันที
               </p>
             </div>
+
+            {/* Right: chat bubbles */}
+            <div className="flex-shrink-0 w-full sm:w-52 flex flex-col justify-center gap-2.5">
+              <div className="flex justify-end">
+                <div className="bg-brand-500 text-white text-[11px] leading-snug px-3 py-2.5 rounded-2xl rounded-br-none shadow-sm">
+                  อยากได้เว็บร้านกาแฟ<br />สไตล์มินิมอล สีน้ำตาล
+                </div>
+              </div>
+              <div className="flex justify-start">
+                <div className="bg-white border border-gray-200 text-gray-500 text-[11px] leading-snug px-3 py-2.5 rounded-2xl rounded-bl-none shadow-sm">
+                  กำลังสร้างให้เลยค่ะ<br />รอสักครู่... ☕
+                </div>
+              </div>
+              <div className="flex justify-end">
+                <div className="bg-brand-50 border border-brand-100 text-brand-700 text-[11px] leading-snug px-3 py-2.5 rounded-2xl rounded-br-none shadow-sm">
+                  เว็บพร้อมแล้วค่ะ! ดูได้เลย ✨
+                </div>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Card 2 — จ่ายเมื่อ Publish (1 col, white) */}
+          {/* Card 2 — จ่ายเมื่อ Publish (1 col, white) — icon+text horizontal */}
           <motion.div {...fadeUp(0.1)}
-            className="rounded-3xl overflow-hidden p-8 flex flex-col gap-6 bg-white"
+            className="rounded-3xl overflow-hidden p-8 flex flex-col gap-5 bg-white"
             style={{ border: '1.5px solid #e5e7eb', boxShadow: '0 4px 24px rgba(0,0,0,0.05)' }}
             whileHover={{ y: -4 }}>
 
-            {/* Top: icon + title */}
-            <div>
-              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-5">
-                <CreditCard size={24} strokeWidth={1.8} color="#2563eb" />
+            {/* Top: icon + text side by side */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0">
+                <CreditCard size={22} strokeWidth={1.8} color="#2563eb" />
               </div>
-              <h3 className="text-xl font-extrabold text-gray-950 mb-1.5">จ่ายเมื่อ<br />Publish จริง</h3>
-              <p className="text-gray-500 text-xs leading-relaxed">ทดลองสร้างและแก้ไขได้ฟรีไม่จำกัด</p>
+              <div>
+                <h3 className="text-lg font-extrabold text-gray-950 mb-1 leading-snug">จ่ายเมื่อ Publish จริง</h3>
+                <p className="text-gray-500 text-xs leading-relaxed">ทดลองสร้างและแก้ไขได้ฟรีไม่จำกัด</p>
+              </div>
             </div>
 
-            {/* Bottom: step rows */}
+            {/* Step rows */}
             <div className="space-y-2 mt-auto">
               {[
                 { label: 'สร้างเว็บ',    free: true },
