@@ -1,66 +1,123 @@
 'use client'
-import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { Volume2, VolumeX, Play, Pause } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function DemoVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [isMuted, setIsMuted] = useState(true)
+  const [volume, setVolume] = useState(0.8)
+  const [isHoveringVolume, setIsHoveringVolume] = useState(false)
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      const newMuted = !isMuted
+      videoRef.current.muted = newMuted
+      setIsMuted(newMuted)
+      // ถ้ากดเปิดเสียงแล้ว volume เดิมเป็น 0 ให้ตั้งค่าเริ่มต้นที่ 80%
+      if (!newMuted && volume === 0) {
+        setVolume(0.8)
+        videoRef.current.volume = 0.8
+      }
+    }
+  }
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause()
+      } else {
+        videoRef.current.play()
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value)
+    setVolume(newVolume)
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume
+      const mutedStatus = newVolume === 0
+      videoRef.current.muted = mutedStatus
+      setIsMuted(mutedStatus)
+    }
+  }
+
   return (
-    <section id="demo" className="py-20 px-6 relative overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #fff8fc 0%, #f0fdf4 100%)' }}>
+    <section className="relative w-full max-w-5xl mx-auto px-6 py-12">
+      <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black border border-gray-100">
+        <video
+          ref={videoRef}
+          src="/demo.mp4"
+          className="w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
 
-      {/* bg blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-20 animate-blob"
-          style={{ background: 'radial-gradient(circle, rgba(255,172,190,0.7) 0%, transparent 65%)' }} />
-        <div className="absolute -bottom-1/4 -right-1/4 w-[550px] h-[550px] rounded-full opacity-20 animate-blob delay-4000"
-          style={{ background: 'radial-gradient(circle, rgba(187,247,208,0.8) 0%, transparent 65%)' }} />
-      </div>
+        {/* Main Controls Overlay */}
+        <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between z-30">
+          {/* Play/Pause Button */}
+          <button
+            onClick={togglePlay}
+            className="p-3 bg-black/40 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all border border-white/10"
+          >
+            {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" />}
+          </button>
 
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
-          <span className="inline-block mb-4 px-4 py-1.5 rounded-full text-sm font-semibold border"
-            style={{ background: 'rgba(255,240,246,0.9)', borderColor: 'rgba(233,30,99,0.22)', color: '#ad1457' }}>
-            ดูวิดีโอสาธิต
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-950 leading-tight">
-            สร้างเว็บใน <span className="text-gradient-vivid">5 นาที</span>
-          </h2>
-          <p className="mt-3 text-gray-500 text-lg">ดูวิธีที่น้องใบบัวสร้างเว็บจริงให้ลูกค้าตั้งแต่ต้นจนจบ</p>
-        </motion.div>
+          {/* Volume Control Group (Vertical) */}
+          <div 
+            className="relative flex flex-col items-center"
+            onMouseEnter={() => setIsHoveringVolume(true)}
+            onMouseLeave={() => setIsHoveringVolume(false)}
+          >
+            <AnimatePresence>
+              {isHoveringVolume && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className="absolute bottom-full mb-3 p-3 bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 flex flex-col items-center"
+                >
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.05"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    className="accent-green-400 cursor-pointer h-24"
+                    style={{
+                      writingMode: 'vertical-lr' as React.CSSProperties['writingMode'],
+                      WebkitAppearance: 'slider-vertical',
+                      width: '6px'
+                    } as React.CSSProperties}
+                  />
+                  <div className="mt-2 text-[10px] font-bold text-white tabular-nums">
+                    {Math.round(volume * 100)}%
+                  </div>
+                  
+                  {/* Invisible bridge to keep hover state stable */}
+                  <div className="absolute h-4 w-full -bottom-4 left-0" />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-        <motion.div
-          className="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/15"
-          style={{ border: '1.5px solid rgba(255,255,255,0.7)' }}
-          initial={{ opacity: 0, y: 40, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}>
-
-          {/* Browser chrome */}
-          <div className="flex items-center gap-2 px-4 py-3 bg-gray-100/90 backdrop-blur-sm border-b border-gray-200">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-red-400" />
-              <div className="w-3 h-3 rounded-full bg-yellow-400" />
-              <div className="w-3 h-3 rounded-full bg-green-400" />
-            </div>
-            <div className="flex-1 bg-white/80 rounded-lg px-3 py-1 text-xs text-gray-400 font-mono border border-gray-200 truncate ml-2">
-              web.hostinglotus.cloud
-            </div>
+            <button
+              onClick={toggleMute}
+              className="p-3 bg-black/40 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all border border-white/10"
+            >
+              {isMuted || volume === 0 ? (
+                <VolumeX size={20} />
+              ) : (
+                <Volume2 size={20} />
+              )}
+            </button>
           </div>
-
-          <video
-            src="/demo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full block"
-            style={{ aspectRatio: '16/9', objectFit: 'cover' }}
-          />
-        </motion.div>
+        </div>
       </div>
     </section>
   )
