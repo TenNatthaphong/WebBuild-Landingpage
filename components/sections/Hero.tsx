@@ -148,7 +148,7 @@ export default function Hero() {
 
           {/* Floating card 2 — tagline line 1 */}
           <motion.div
-            className="absolute -bottom-5 -left-10 glass rounded-2xl px-4 py-3 shadow-xl"
+            className="absolute -bottom-5 left-1/2 -translate-x-1/2 glass rounded-2xl px-4 py-3 shadow-xl whitespace-nowrap"
             animate={{ y: [0,10,0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}>
             <div className="text-xs font-bold text-gray-800">สร้างเว็บไซต์ด้วย AI ใน 5 นาที</div>
           </motion.div>
