@@ -111,16 +111,26 @@ export default function Hero() {
           className="relative hidden lg:block">
 
           {/* Hero mockup image */}
-          <div className="rounded-2xl overflow-hidden shadow-2xl shadow-brand-900/15">
-            <Image
-              src="/hero-mockup.png"
-              alt="BAIBUA AI Web Builder"
-              width={900}
-              height={600}
-              className="w-full h-auto"
-              priority
-              style={{ objectFit: 'cover' }}
-            />
+          <div className="relative" style={{ overflow: 'visible' }}>
+            <div className="rounded-2xl overflow-hidden shadow-2xl shadow-brand-900/15">
+              <Image
+                src="/hero-mockup.png"
+                alt="BAIBUA AI Web Builder"
+                width={900}
+                height={600}
+                className="w-full h-auto"
+                priority
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+
+            {/* mascot-1 โบกมือ วางทับฝั่งซ้ายของรูป */}
+            <motion.div
+              className="absolute -bottom-8 -left-16 pointer-events-none select-none hidden md:block z-20"
+              animate={{ y: [0,-10,0] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}>
+              <Image src="/mascot-1.png" alt="น้องใบบัว" width={200} height={200} style={{ objectFit: 'contain' }} />
+            </motion.div>
           </div>
 
           {/* Floating card 1 — published */}
