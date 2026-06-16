@@ -53,7 +53,7 @@ export default function Hero() {
         className="absolute -top-[10%] -left-[8%] w-[720px] h-[720px] rounded-full animate-blob pointer-events-none" />
       <div ref={b2}
         className="absolute top-[0%] right-[-10%] w-[620px] h-[620px] rounded-full animate-blob delay-4000 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(192,216,248,0.55) 0%, rgba(184,240,222,0.25) 40%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(circle, rgba(255,236,153,0.65) 0%, rgba(255,220,80,0.30) 40%, transparent 70%)' }} />
       <div ref={b3}
         className="absolute bottom-[-20%] left-[30%] w-[500px] h-[500px] rounded-full animate-blob-slow delay-2000 pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(184,240,200,0.45) 0%, transparent 65%)' }} />
@@ -68,13 +68,6 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 items-center">
         {/* ── Left: Copy ── */}
         <motion.div variants={stagger} initial="hidden" animate="show" style={{ y: textY }} className="space-y-7">
-          <motion.div variants={item}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm border"
-            style={{ background: 'rgba(255,240,246,0.85)', borderColor: 'rgba(233,30,99,0.25)', color: '#ad1457' }}>
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#e91e63' }} />
-            BAIBUA — AI Web Builder สัญชาติไทย
-          </motion.div>
-
           <motion.div variants={item} className="space-y-1">
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gray-950">สร้างเว็บไซต์</h1>
             <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-tight text-gradient-vivid">
@@ -84,7 +77,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.p variants={item} className="text-xl text-gray-600 max-w-[480px] leading-relaxed">
-            สร้างเว็บสวยพร้อมออนไลน์ ใช้งานได้ทันที ไม่ต้องมีความรู้เรื่องโค้ด
+            สร้างเว็บสวยพร้อมออนไลน์ ใช้งานได้ทันที ไม่ต้องมีความรู้เรื่องโค้ด แค่เล่าให้น้องใบบัวฟัง
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap gap-4">
@@ -117,48 +110,17 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="relative hidden lg:block">
 
-          {/* Browser chrome */}
-          <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-2xl shadow-brand-900/15 bg-white">
-            {/* Top bar */}
-            <div className="bg-gray-50 border-b border-gray-200 px-4 py-3 flex items-center gap-3">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                <div className="w-3 h-3 rounded-full bg-green-400" />
-              </div>
-              <div className="flex-1 bg-white rounded-lg px-3 py-1.5 text-xs text-gray-400 border border-gray-200 font-mono">
-                my-coffee-shop.hostinglotus.cloud
-              </div>
-              <motion.div
-                className="px-3 py-1.5 bg-brand-600 text-white text-xs font-bold rounded-lg cursor-pointer flex items-center gap-1"
-                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Zap size={11} strokeWidth={2.5} /> Publish
-              </motion.div>
-            </div>
-
-            {/* Website skeleton */}
-            <div className="bg-gradient-to-br from-brand-50 to-white p-5 h-72">
-              <div className="h-8 bg-brand-900 rounded-lg mb-4 w-full" />
-              <div className="h-10 bg-brand-100 rounded-xl mb-2 w-3/4" />
-              <div className="h-3 bg-gray-100 rounded mb-1.5 w-full" />
-              <div className="h-3 bg-gray-100 rounded mb-4 w-2/3" />
-              <div className="flex gap-3 mb-4">
-                <div className="h-9 bg-brand-600 rounded-xl flex-1" />
-                <div className="h-9 bg-gray-200 rounded-xl flex-[0.7]" />
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {[...Array(6)].map((_,i) => (
-                  <div key={i} className="h-14 bg-white rounded-xl border border-gray-100 shadow-sm" />
-                ))}
-              </div>
-            </div>
-
-            {/* AI Chat strip */}
-            <div className="border-t border-gray-100 bg-brand-50 px-4 py-3 flex items-center gap-3">
-              <div className="w-7 h-7 rounded-full bg-brand-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">AI</div>
-              <div className="text-sm text-gray-600">ต้องการแก้ไขส่วนไหน? พิมพ์คำสั่งได้เลยค่ะ...</div>
-              <div className="ml-auto w-8 h-8 rounded-xl bg-brand-600 flex items-center justify-center text-white text-xs">→</div>
-            </div>
+          {/* Hero mockup image */}
+          <div className="rounded-2xl overflow-hidden shadow-2xl shadow-brand-900/15">
+            <Image
+              src="/hero-mockup.png"
+              alt="BAIBUA AI Web Builder"
+              width={900}
+              height={600}
+              className="w-full h-auto"
+              priority
+              style={{ objectFit: 'cover' }}
+            />
           </div>
 
           {/* Floating card 1 — published */}
