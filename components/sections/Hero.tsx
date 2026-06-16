@@ -116,8 +116,8 @@ export default function Hero() {
               <Image
                 src="/hero-mockup.png"
                 alt="BAIBUA AI Web Builder"
-                width={900}
-                height={600}
+                width={1100}
+                height={733}
                 className="w-full h-auto"
                 priority
                 style={{ objectFit: 'cover' }}
@@ -148,7 +148,7 @@ export default function Hero() {
 
           {/* Floating card 2 — tagline line 1 */}
           <motion.div
-            className="absolute -bottom-5 -right-10 glass rounded-2xl px-4 py-3 shadow-xl"
+            className="absolute -bottom-5 -left-10 glass rounded-2xl px-4 py-3 shadow-xl"
             animate={{ y: [0,10,0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}>
             <div className="text-xs font-bold text-gray-800">สร้างเว็บไซต์ด้วย AI ใน 5 นาที</div>
           </motion.div>
